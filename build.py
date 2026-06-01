@@ -1,760 +1,500 @@
 #!/usr/bin/env python3
-"""Generate DJ BAZZA premium restaurant menu HTML."""
+"""Generate DJ BAZZA mobile-first online menu website."""
+import urllib.parse
 import os
 
 OUTPUT = "/opt/data/dj-bazza-menu/index.html"
 
-# ═══════════════════════════════════════════════
-# DATA
-# ═══════════════════════════════════════════════
-RESTAURANT = {
+# Restaurant info
+R = {
     "name_ar": "دي جي بازا",
     "name_en": "DJ BAZZA",
-    "phone": "053 477 2776",
-    "location_url": "https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9",
-    "location_text": "📍 جدة، المملكة العربية السعودية",
+    "phone": "0534772776",
+    "phone_display": "053 477 2776",
+    "map_url": "https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9",
+    "location": "جدة، المملكة العربية السعودية",
+    "wa_url": "https://wa.me/966534772776",
 }
 
-SECTIONS = [
+# Categories with items
+CATEGORIES = [
     {
+        "id": "mutbaq",
         "title_ar": "المطبق",
         "title_en": "ALMUTBIQ",
-        "banner": "https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=1400&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=800&q=85&auto=format",
+        "type": "single",  # single price per item
         "items": [
-            ("Meat Mutbaq", "مطبق لحم"),
-            ("Chicken Mutbaq", "مطبق دجاج"),
-            ("Vegetable Mutbaq", "مطبق خضار"),
-            ("Mozzarella Mutbaq", "مطبق جبن موزاريلا"),
-            ("Burger Mutbaq", "مطبق برجر"),
-            ("Banana Mutbaq", "مطبق موز"),
-            ("Cream Mutbaq", "مطبق قشطة"),
-            ("Cheddar Cheese Mutbaq", "مطبق جبن شيدر"),
-            ("Liquid Cheese Mutbaq", "مطبق جبن سائل"),
-            ("Halloumi Cheese Mutbaq", "مطبق جبن حلومي"),
-            ("Vegetable Cheese Mutbaq", "مطبق خضار جبن"),
-            ("Double Cheese Mutbaq", "مطبق جبن دبل"),
-            ("Double Meat Mutbaq", "مطبق لحم دبل"),
+            ("Meat Mutbaq", "مطبق لحم", 9),
+            ("Chicken Mutbaq", "مطبق دجاج", 10),
+            ("Vegetable Mutbaq", "مطبق خضار", 6),
+            ("Mozzarella Mutbaq", "مطبق جبن موزاريلا", 8),
+            ("Burger Mutbaq", "مطبق برجر", 7),
+            ("Banana Mutbaq", "مطبق موز", 7),
+            ("Cream Mutbaq", "مطبق قشطة", 7),
+            ("Cheddar Cheese Mutbaq", "مطبق جبن شيدر", 7),
+            ("Liquid Cheese Mutbaq", "مطبق جبن سائل", 8),
+            ("Halloumi Cheese Mutbaq", "مطبق جبن حلومي", 11),
+            ("Double Vegetable Mutbaq", "مطبق خضار دبل", 11),
+            ("Double Cheese Mutbaq", "مطبق جبن دبل", 13),
+            ("Double Meat Mutbaq", "مطبق لحم دبل", 16),
         ],
-        "price": "10 SAR",
-        "price_label_ar": "الكل 10 ريال",
-        "price_label_en": "All 10 SAR",
     },
     {
+        "id": "sides",
         "title_ar": "أطباق جانبية",
         "title_en": "SIDE DISHES",
-        "banner": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=1400&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=85&auto=format",
+        "type": "single",
         "items": [
-            ("Cheese Fries", "بطاطس جبن"),
-            ("Chicken Cheese Fries", "بطاطس دجاج وجبن"),
-            ("Cheddar Cheese Fries", "شيدر اند جبن"),
-            ("Regular Garlic Sauce", "ثوم عادي"),
-            ("Spicy Garlic Sauce", "ثوم حار"),
-            ("Hummus", "حمص"),
-            ("Tahini", "طحينة"),
-            ("Mayonnaise", "مايونيز"),
-            ("Cheese Sauce", "جبن"),
-            ("Plain Fries", "بطاطس عادي"),
-            ("Cheese Burger", "برجر جبن"),
-            ("Regular Burger", "برجر عادي"),
-            ("Hot Feta Cheese", "فتة جبن"),
-            ("Mixed Fries", "مشكلة بطاطس"),
-        ],
-        "price": "6 SAR",
-        "price_label_ar": "6 ريال",
-        "price_label_en": "6 SAR",
-        "subsections": [
-            {
-                "title_ar": "مشكلات المعصوب",
-                "title_en": "MASOUB & SPECIALS",
-                "items": [
-                    ("Honey Cream Masoub", "معصوب عسل"),
-                    ("Honey Cheese Masoub", "معصوب جبن"),
-                    ("Honey Cream Mix Masoub", "معصوب قشطة عسل"),
-                    ("Honey Banana Masoub", "معصوب موز عسل"),
-                    ("Royal Masoub", "معصوب ملكي"),
-                    ("Royal Mixed Masoub", "معصوب ملكي مشكلة"),
-                    ("Royal Cream Masoub", "معصوب ملكي قشطة"),
-                    ("Plain Cream Masoub", "معصوب قشطة عادي"),
-                    ("Royal Fattah", "فتة ملكي"),
-                    ("Grape Juice", "زبيب عنب"),
-                ],
-                "price": "15 SAR",
-                "price_label_ar": "15 ريال",
-                "price_label_en": "15 SAR",
-            }
+            ("Cheese Fries", "بطاطس جبن", 9),
+            ("Chicken Cheese Fries", "بطاطس دجاج وجبن", 15),
+            ("Cheddar & Cheese", "شيدر اند جبن", 2),
+            ("Regular Garlic", "ثوم عادي", 2),
+            ("Spicy Garlic", "ثوم حار", 2),
+            ("Hummus", "حمص", 2),
+            ("Tahini", "طحينة", 2),
+            ("Mayonnaise", "مايونيز", 2),
+            ("Cheese Sauce", "جبن", 2),
+            ("Plain Fries", "بطاطس عادي", 7),
+            ("Cheese Burger", "برجر جبن", 11),
+            ("Regular Burger", "برجر عادي", 10),
+            ("Cheese Fattah", "فتة جبن", 8),
+            ("Hot Fattah", "فتة حنيش", 12),
         ],
     },
     {
+        "id": "masoub",
+        "title_ar": "معصوب",
+        "title_en": "MASOUB",
+        "banner": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=85&auto=format",
+        "type": "single",
+        "items": [
+            ("Honey Masoub", "معصوب عسل", 8),
+            ("Cheese Masoub", "معصوب جبن", 13),
+            ("Honey Cream Masoub", "معصوب قشطة عسل", 12),
+            ("Honey Banana Masoub", "معصوب موز عسل", 15),
+            ("Royal Masoub", "معصوب ملكي", 15),
+            ("Royal Mixed Masoub", "معصوب ملكي مشكلة", 15),
+            ("Royal Cream Masoub", "معصوب ملكي قشطة", 18),
+            ("Mixed Cream Masoub", "معصوب قشطة مشكلة", 18),
+            ("Plain Cream Masoub", "معصوب قشطة عادي", 6),
+            ("Royal Fattah", "فتة ملكي", 10),
+        ],
+    },
+    {
+        "id": "shawarma",
         "title_ar": "شاورما",
         "title_en": "SHAWARMA",
-        "banner": "https://images.unsplash.com/photo-1561651823-34feb02250e4?w=1400&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1561651823-34feb02250e4?w=800&q=85&auto=format",
+        "type": "sizes",  # items with size variants
         "items": [
-            ("Small Chicken Shawarma", "شاورما دجاج صغير"),
-            ("Large Chicken Shawarma", "شاورما دجاج كبير"),
-            ("Small Arabic Chicken Shawarma", "شاورما عربي دجاج صغير"),
-            ("Large Arabic Chicken Shawarma", "شاورما عربي دجاج كبير"),
-            ("Chicken Shawarma Plate", "صحن شاورما دجاج"),
-            ("Arabic Chicken Shawarma Plate", "صحن شاورما عربي دجاج"),
-            ("Shawarma Crispy", "شاورما كرسبي"),
-        ],
-        "price": "8 - 20 SAR",
-        "price_label_ar": "صغير 8 • كبير 12 • صحن 20",
-        "price_label_en": "Small 8 • Large 12 • Plate 20",
-        "price_detail": [
-            ("Small", "8 SAR"),
-            ("Large", "12 SAR"),
-            ("Plate", "20 SAR"),
-        ],
-        "extras": [
-            {
-                "title_ar": "إضافات",
-                "title_en": "EXTRAS",
-                "items": [
-                    ("Fasolia", "فاصوليا"),
-                    ("Falafel Sandwich", "ساندوتش فلافل"),
-                    ("Liver Sandwich", "ساندوتش كبدة"),
-                    ("3 Pieces Falafel", "فلافل 3 حبات"),
-                    ("Cheese Sambusa", "سمبوسة جبن"),
-                    ("Meat Sambusa", "سمبوسة لحم"),
-                    ("Chicken Sambusa", "سمبوسة دجاج"),
-                    ("Vegetable Sambusa", "سمبوسة خضار"),
-                ],
-                "price": "5 SAR",
-                "price_label_ar": "5 ريال",
-                "price_label_en": "5 SAR",
-            },
+            ("Chicken Shawarma", "شاورما دجاج", [("Small", 7), ("Large", 12)]),
+            ("Arabic Chicken Shawarma", "شاورما عربي دجاج", [("Small", 15), ("Large", 17)]),
+            ("Chicken Shawarma Plate", "صحن شاورما دجاج", [("Regular", 21)]),
+            ("Arabic Shawarma Plate", "صحن شاورما عربي دجاج", [("Large", 26)]),
+            ("Crispy Shawarma", "شاورما كرسبي", [("Regular", 10)]),
         ],
     },
     {
-        "title_ar": "المشروبات",
-        "title_en": "DRINKS",
-        "banner": "https://images.unsplash.com/photo-1544252910-5f7e8f5a7f5e?w=1400&q=85&auto=format",
-        "subsections": [
-            {
-                "title_ar": "عصائر طازجة",
-                "title_en": "FRESH JUICES",
-                "items": [
-                    ("Fresh Orange Juice", "برتقال فريش"),
-                    ("Fresh Cocktail Juice", "كوكتيل فريش"),
-                    ("Fresh Mango Juice", "مانجو فريش"),
-                    ("Fresh Pomegranate Juice", "رمان"),
-                    ("Banana Milk Juice", "موز حليب"),
-                ],
-                "price": "10 SAR",
-                "price_label_ar": "10 ريال",
-                "price_label_en": "10 SAR",
-            },
-            {
-                "title_ar": "مشروبات غازية",
-                "title_en": "SOFT DRINKS",
-                "items": [
-                    ("Pepsi", "بيبسي"),
-                    ("Diet Pepsi", "بيبسي دايت"),
-                    ("7UP", "سفن أب"),
-                    ("Mirinda", "ميرندا"),
-                    ("Spring Juice", "عصير ربيع"),
-                ],
-                "price": "3 SAR",
-                "price_label_ar": "3 ريال",
-                "price_label_en": "3 SAR",
-            },
-            {
-                "title_ar": "مشروبات ساخنة",
-                "title_en": "HOT DRINKS",
-                "items": [
-                    ("Tea", "شاي"),
-                    ("Adani Tea", "شاي عدني"),
-                    ("Nescafe", "نسكافيه"),
-                    ("Black Tea", "شاي سادة"),
-                    ("Karak Tea", "كرك"),
-                ],
-                "price": "5 SAR",
-                "price_label_ar": "5 ريال",
-                "price_label_en": "5 SAR",
-            },
+        "id": "extras",
+        "title_ar": "إضافات",
+        "title_en": "EXTRAS",
+        "banner": "https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=800&q=85&auto=format",
+        "type": "single",
+        "items": [
+            ("Fasolia", "فاصوليا", 8),
+            ("Falafel Sandwich", "ساندوتش فلافل", 4),
+            ("Liver Sandwich", "ساندوتش كبدة", 5),
+            ("3 Pieces Falafel", "فلافل 3 حبات", 1),
+            ("Cheese Sambusa", "سمبوسة جبن", 1),
+            ("Meat Sambusa", "سمبوسة لحم", 1),
+            ("Chicken Sambusa", "سمبوسة دجاج", 1),
+            ("Vegetable Sambusa", "سمبوسة خضار", 1),
+        ],
+    },
+    {
+        "id": "juices",
+        "title_ar": "العصائر الطازجة",
+        "title_en": "FRESH JUICES",
+        "banner": "https://images.unsplash.com/photo-1546173159-308b170e996f?w=800&q=85&auto=format",
+        "type": "single",
+        "items": [
+            ("Fresh Orange Juice", "برتقال فريش", 10),
+            ("Fresh Cocktail Juice", "كوكتيل فريش", 12),
+            ("Fresh Mango Juice", "مانجو فريش", 12),
+            ("Banana Milk Juice", "موز حليب", 12),
+            ("Fresh Pomegranate Juice", "رمان", 12),
+        ],
+    },
+    {
+        "id": "softdrinks",
+        "title_ar": "المشروبات الغازية",
+        "title_en": "SOFT DRINKS",
+        "banner": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&q=85&auto=format",
+        "type": "single",
+        "items": [
+            ("Pepsi", "بيبسي", 3),
+            ("Diet Pepsi", "بيبسي دايت", 3),
+            ("7UP", "سفن أب", 3),
+            ("Mirinda", "ميرندا", 3),
+            ("Spring Juice", "عصير ربيع", "2.5"),
+        ],
+    },
+    {
+        "id": "hotdrinks",
+        "title_ar": "المشروبات الساخنة",
+        "title_en": "HOT DRINKS",
+        "banner": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85&auto=format",
+        "type": "single",
+        "items": [
+            ("Tea", "شاي", 2),
+            ("Adani Tea", "شاي عدني", 2),
+            ("Nescafe", "نسكافيه", 3),
+            ("Black Tea", "شاي سادة", 1),
+            ("Karak Tea", "كرك", 3),
         ],
     },
 ]
 
 
-# ═══════════════════════════════════════════════
-# HTML GENERATION
-# ═══════════════════════════════════════════════
-
-def make_banner(section):
-    return f'''  <div class="banner">
-    <img src="{section['banner']}" alt="{section['title_en']}" loading="lazy">
-    <div class="banner-overlay"></div>
-    <div class="banner-title">
-      <span class="ar">{section['title_ar']}</span>
-      <span class="en">{section['title_en']}</span>
-    </div>
-  </div>'''
+def esc(text):
+    """Escape text for HTML attribute."""
+    return str(text).replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def make_items(items, price, price_label_ar, price_label_en, extras=None, price_detail=None):
+def cat_items_html(cat):
+    """Generate HTML for category items."""
     rows = []
-    for en, ar in items:
-        rows.append(f'''      <tr class="item-pair-en"><td class="item-en-name">{en}</td><td class="item-price-cell">{price}</td></tr>
-      <tr class="item-pair-ar"><td class="item-ar-name">{ar}</td><td class="item-price-cell">{price}</td></tr>''')
-    
-    items_html = '\n'.join(rows)
-    
-    price_info = ""
-    if price_detail:
-        parts = " • ".join([f"{s}: {p}" for s, p in price_detail])
-        price_info = f"""<div class="price-banner">
-    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">{price_label_ar}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{parts}</span>
-  </div>"""
+    if cat["type"] == "sizes":
+        for en, ar, sizes in cat["items"]:
+            size_html = " ".join(f'<span class="size-tag">{s}: {p} SAR</span>' for s, p in sizes)
+            rows.append(f'''    <div class="menu-item">
+      <div class="item-info">
+        <span class="item-name-en">{esc(en)}</span>
+        <span class="item-name-ar">{esc(ar)}</span>
+      </div>
+      <div class="item-prices">{size_html}</div>
+    </div>''')
     else:
-        price_info = f"""<div class="price-banner">
-    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">{price_label_ar}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{price}</span>
-    <span style="color:#ddd;margin:0 10px;">|</span>
-    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">{price_label_en}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{price}</span>
-  </div>"""
-    
-    return items_html, price_info
+        for en, ar, price in cat["items"]:
+            rows.append(f'''    <div class="menu-item">
+      <div class="item-info">
+        <span class="item-name-en">{esc(en)}</span>
+        <span class="item-name-ar">{esc(ar)}</span>
+      </div>
+      <div class="item-price-tag">{esc(price)} SAR</div>
+    </div>''')
+    return "\n".join(rows)
 
 
-def make_subsection(sub, is_last=False):
-    items_rows = []
-    for en, ar in sub["items"]:
-        items_rows.append(f'''      <tr class="item-pair-en"><td class="item-en-name">{en}</td><td class="item-price-cell">{sub['price']}</td></tr>
-      <tr class="item-pair-ar"><td class="item-ar-name">{ar}</td><td class="item-price-cell">{sub['price']}</td></tr>''')
+# ─── BUILD HTML ───
+
+nav_tabs = []
+sections = []
+
+for i, cat in enumerate(CATEGORIES):
+    active = " active" if i == 0 else ""
+    nav_tabs.append(f'<button class="cat-tab{active}" data-target="#{cat["id"]}"><span class="tab-ar">{cat["title_ar"]}</span><span class="tab-en">{cat["title_en"]}</span></button>')
     
-    items_html = '\n'.join(items_rows)
+    items_html = cat_items_html(cat)
     
-    return f'''  <div class="category-divider">
-    <h3>{sub['title_ar']} <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">{sub['title_en']}</span></h3>
+    sections.append(f'''<section id="{cat["id"]}" class="cat-section">
+  <div class="cat-banner">
+    <img src="{cat["banner"]}" alt="{cat["title_en"]}" loading="lazy">
+    <div class="cat-banner-overlay"></div>
+    <div class="cat-banner-text">
+      <span class="cat-banner-ar">{cat["title_ar"]}</span>
+      <span class="cat-banner-en">{cat["title_en"]}</span>
+    </div>
   </div>
-  <div class="menu-items">
-    <table class="menu-table">
-      <tr class="price-row-en"><th class="th-item">{sub['title_en']}</th><th class="th-price">{sub['price']}</th></tr>
-      <tr class="price-row-ar"><th class="th-item">{sub['title_ar']}</th><th class="th-price">{sub['price_label_ar']}</th></tr>
+  <div class="cat-items">
 {items_html}
-    </table>
   </div>
-  <div class="price-banner">
-    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">{sub['price_label_ar']}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{sub['price']}</span>
-    <span style="color:#ddd;margin:0 10px;">|</span>
-    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">{sub['price_label_en']}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{sub['price']}</span>
-  </div>'''
+</section>''')
 
 
-def make_section(section):
-    parts = [make_banner(section)]
-    
-    parts.append(f'''  <div class="section-header">
-    <h2><span class="en">{section['title_en']}</span> <span class="ar" style="color:#FF6D00;">{section['title_ar']}</span></h2>
-  </div>''')
-    
-    # Handle sections with direct items
-    if "items" in section:
-        items_html, price_info = make_items(
-            section["items"], 
-            section["price"],
-            section.get("price_label_ar", ""),
-            section.get("price_label_en", ""),
-            price_detail=section.get("price_detail")
-        )
-        
-        parts.append(f'''  <div class="menu-items">
-    <table class="menu-table">
-      <tr class="price-row-en"><th class="th-item">{section['title_en']}</th><th class="th-price">{section.get('price_label_en', section['price'])}</th></tr>
-      <tr class="price-row-ar"><th class="th-item">{section['title_ar']}</th><th class="th-price">{section.get('price_label_ar', section['price'])}</th></tr>
-{items_html}
-    </table>
-  </div>''')
-        
-        # Price banner
-        if section.get("price_detail"):
-            parts_d = " • ".join([f"{s}: {p}" for s, p in section["price_detail"]])
-            parts.append(f'''  <div class="price-banner">
-    <span style="font-weight:700;color:#1B5E20;font-size:18px;">{parts_d}</span>
-  </div>''')
-        else:
-            parts.append(f'''  <div class="price-banner">
-    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">{section.get('price_label_ar', section['price'])}</span>
-    <span style="font-weight:700;color:#1B5E20;font-size:20px;">{section['price']}</span>
-  </div>''')
-    
-    # Subsections (for side dishes masoub, drink types, etc.)
-    for sub in section.get("subsections", []):
-        parts.append(make_subsection(sub))
-    
-    # Extras (like Shawarma extras)
-    for extra in section.get("extras", []):
-        parts.append(make_subsection(extra))
-    
-    return f'<div class="section-card">\n' + '\n'.join(parts) + '\n</div>'
-
-
-# ═══════════════════════════════════════════════
-# FULL HTML
-# ═══════════════════════════════════════════════
-
-HTML_TOP = '''<!DOCTYPE html>
-<html lang="en" dir="ltr">
+HTML = f'''<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DJ BAZZA | دي جي بازا - Premium Restaurant Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{R["name_ar"]} | {R["name_en"]} - القائمة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ─── RESET & BASE ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Poppins', 'Tajawal', sans-serif;
-  background: #1B5E20;
-  color: #2C2C2C;
-  padding: 20px;
-  margin: 0;
-  min-height: 100vh;
-}
-
-/* ─── PAGE WRAPPER ─── */
-.menu-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #FFFFFF;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-/* ─── TYPOGRAPHY ─── */
-h1, h2, h3, h4 { font-family: 'Tajawal', 'Poppins', sans-serif; }
-.ar { font-family: 'Tajawal', sans-serif; direction: rtl; }
-.en { font-family: 'Poppins', sans-serif; }
+/* ─── RESET ─── */
+*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+html{{scroll-behavior:smooth;scroll-padding-top:70px}}
+body{{font-family:'Tajawal','Poppins',sans-serif;background:#0D3B0E;color:#333;min-height:100vh;overflow-x:hidden;direction:rtl}}
+img{{max-width:100%;height:auto;display:block}}
 
 /* ─── HEADER ─── */
-.restaurant-header {
-  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 60%, #388E3C 100%);
-  color: #fff;
-  text-align: center;
-  padding: 40px 30px 30px;
-  position: relative;
-  overflow: hidden;
-}
-.restaurant-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,109,0,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.restaurant-header .logo-ar {
-  font-family: 'Tajawal', sans-serif;
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  line-height: 1;
-}
-.restaurant-header .logo-en {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 300;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin-top: 4px;
-}
-.restaurant-header .header-divider {
-  width: 60px;
-  height: 3px;
-  background: #FF6D00;
-  margin: 14px auto;
-  border-radius: 2px;
-}
-.restaurant-header .header-info {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  font-size: 15px;
-  margin-top: 10px;
-}
-.restaurant-header .header-info span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.9;
-  font-weight: 300;
-}
-.restaurant-header .header-info a {
-  color: #FFC107;
-  text-decoration: none;
-  font-weight: 500;
-}
-.restaurant-header .header-info a:hover {
-  text-decoration: underline;
-}
-.header-accent-line {
-  height: 4px;
-  background: linear-gradient(90deg, #FF6D00, #FF9800, #FFC107, #FF9800, #FF6D00);
-}
+.header{{
+  background:linear-gradient(135deg,#0D3B0E 0%,#1B5E20 50%,#2E7D32 100%);
+  color:#fff;text-align:center;padding:28px 16px 20px;
+  position:relative;overflow:hidden
+}}
+.header::before{{
+  content:'';position:absolute;top:-60%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(255,109,0,0.08) 0%,transparent 60%);pointer-events:none
+}}
+.header .logo-ar{{font-size:42px;font-weight:900;letter-spacing:1px;line-height:1.2}}
+.header .logo-en{{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:5px;text-transform:uppercase;opacity:.85;margin-top:2px}}
+.header .h-divider{{width:50px;height:3px;background:#FF6D00;margin:10px auto;border-radius:2px}}
+.header .h-sub{{font-size:13px;opacity:.7;font-weight:300}}
+.header .h-actions{{
+  display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap
+}}
+.header .h-actions a{{
+  display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:25px;
+  font-size:13px;font-weight:500;text-decoration:none;transition:.2s;
+  font-family:'Tajawal',sans-serif
+}}
+.btn-wa{{background:#25D366;color:#fff}}
+.btn-call{{background:#fff;color:#1B5E20}}
+.btn-map{{background:#FF6D00;color:#fff}}
+.header .h-actions a:hover{{transform:scale(1.05);opacity:.9}}
+.header .h-actions svg{{width:18px;height:18px;fill:currentColor}}
 
-/* ─── SECTION CARD ─── */
-.section-card {
-  margin: 16px 20px;
-  background: #FFFFFF;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(27,94,32,0.06), 0 1px 4px rgba(0,0,0,0.04);
-  border: 1px solid #F0F0F0;
-}
+/* ─── STICKY NAV ─── */
+.cat-nav{{
+  position:sticky;top:0;z-index:100;
+  background:#0D3B0E;padding:8px 8px;overflow-x:auto;
+  display:flex;gap:6px;white-space:nowrap;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  border-bottom:2px solid #FF6D00
+}}
+.cat-nav::-webkit-scrollbar{{display:none}}
+.cat-tab{{
+  flex-shrink:0;padding:6px 12px;border:none;border-radius:20px;
+  font-family:'Tajawal',sans-serif;font-size:13px;font-weight:500;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
+  cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2
+}}
+.cat-tab .tab-en{{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;text-transform:uppercase;letter-spacing:.5px;opacity:.7}}
+.cat-tab.active,.cat-tab:active{{background:#FF6D00;color:#fff;box-shadow:0 2px 10px rgba(255,109,0,.3)}}
+.cat-tab.active .tab-en{{opacity:1}}
 
-/* ─── BANNER ─── */
-.banner {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(27,94,32,0.6) 0%, rgba(255,109,0,0.25) 100%);
-  z-index: 1;
-}
-.banner-title {
-  position: absolute;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  padding: 20px;
-  width: 100%;
-}
-.banner-title .ar {
-  font-size: 42px;
-  font-weight: 900;
-  display: block;
-  margin-bottom: 4px;
-}
-.banner-title .en {
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.95;
-}
+/* ─── CATEGORY SECTIONS ─── */
+.cat-section{{margin-bottom:12px;background:#fff;border-radius:12px;overflow:hidden;margin:12px 10px;box-shadow:0 2px 12px rgba(0,0,0,.08)}}
+.cat-banner{{position:relative;height:180px;overflow:hidden}}
+.cat-banner img{{width:100%;height:100%;object-fit:cover}}
+.cat-banner-overlay{{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,59,14,.7) 0%,rgba(255,109,0,.3) 100%);z-index:1}}
+.cat-banner-text{{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:12px}}
+.cat-banner-ar{{font-size:30px;font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,.3)}}
+.cat-banner-en{{font-family:'Poppins',sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;text-transform:uppercase;opacity:.9;text-shadow:0 1px 6px rgba(0,0,0,.3)}}
 
-/* ─── SECTION HEADER ─── */
-.section-header {
-  padding: 20px 24px 8px;
-  border-bottom: 2px solid #1B5E20;
-  margin: 0 24px;
-}
-.section-header h2 {
-  font-size: 24px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: space-between;
-}
-.section-header h2 .en {
-  font-family: 'Poppins', sans-serif;
-  color: #1B5E20;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-/* ─── TWO-LINE ITEMS ─── */
-.menu-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.price-row-en th, .price-row-ar th {
-  padding: 6px 6px;
-  border-bottom: 1px solid #E8F5E9;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #999;
-}
-.price-row-en .th-item { text-align: left; width: 70%; }
-.price-row-ar .th-item { text-align: right; width: 70%; direction: rtl; }
-.price-row-en .th-price, .price-row-ar .th-price { text-align: center; width: 30%; }
-
-.item-pair-en td {
-  padding: 8px 6px 2px;
-  border-bottom: none;
-  vertical-align: bottom;
-}
-.item-pair-ar td {
-  padding: 2px 6px 8px;
-  border-bottom: 1px dashed #E8F5E9;
-  vertical-align: top;
-}
-.item-pair-en .item-en-name {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  text-align: left;
-}
-.item-pair-ar .item-ar-name {
-  font-family: 'Tajawal', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: #555;
-  text-align: right;
-  direction: rtl;
-}
-.item-pair-en .item-price-cell,
-.item-pair-ar .item-price-cell {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #1B5E20;
-  text-align: center;
-}
-.item-pair-ar .item-price-cell {
-  font-family: 'Tajawal', sans-serif;
-}
-
-/* ─── CATEGORY DIVIDER (sub-sections) ─── */
-.category-divider {
-  background: #E8F5E9;
-  padding: 10px 24px;
-  margin: 0;
-  border-top: 1px solid #C8E6C9;
-}
-.category-divider h3 {
-  font-family: 'Tajawal', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #1B5E20;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.category-divider h3::before {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #FF6D00);
-}
-.category-divider h3::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, #FF6D00, transparent);
-}
-
-/* ─── PRICE BANNER ─── */
-.price-banner {
-  background: linear-gradient(135deg, #E8F5E9 0%, #FFF3E0 100%);
-  margin: 0 24px 16px;
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-  border: 1px solid rgba(27,94,32,0.08);
-}
+/* ─── CATEGORY ITEMS ─── */
+.cat-items{{padding:8px 14px 12px}}
+.menu-item{{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;border-bottom:1px dashed #E8F5E9;gap:10px
+}}
+.menu-item:last-child{{border-bottom:none}}
+.item-info{{flex:1;min-width:0}}
+.item-name-en{{
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;
+  color:#333;display:block;direction:ltr;text-align:left
+}}
+.item-name-ar{{
+  font-family:'Tajawal',sans-serif;font-size:15px;font-weight:500;
+  color:#555;display:block;margin-top:1px
+}}
+.item-price-tag{{
+  font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;
+  color:#1B5E20;white-space:nowrap;background:#E8F5E9;
+  padding:4px 10px;border-radius:8px;flex-shrink:0
+}}
+.item-prices{{
+  display:flex;gap:4px;flex-wrap:wrap;flex-shrink:0;justify-content:flex-start
+}}
+.size-tag{{
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;
+  color:#1B5E20;background:#E8F5E9;padding:3px 8px;border-radius:6px;
+  white-space:nowrap
+}}
 
 /* ─── FOOTER ─── */
-.footer {
-  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%);
-  color: #fff;
-  text-align: center;
-  padding: 36px 28px;
-  margin: 16px 20px;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-}
-.footer::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,109,0,0.1) 0%, transparent 60%);
-  pointer-events: none;
-}
-.footer .footer-logo {
-  font-family: 'Tajawal', sans-serif;
-  font-size: 28px;
-  font-weight: 900;
-  margin-bottom: 4px;
-}
-.footer .footer-logo-en {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: 0.7;
-}
-.footer .footer-divider {
-  width: 40px;
-  height: 2px;
-  background: #FF6D00;
-  margin: 12px auto;
-  border-radius: 2px;
-}
-.footer .footer-contact {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-.footer .footer-contact a {
-  color: #FFC107;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.footer .footer-location {
-  font-size: 13px;
-  opacity: 0.7;
-  margin-top: 10px;
-  font-weight: 300;
-}
-.footer .footer-location a {
-  color: #FFC107;
-  text-decoration: none;
-}
-.footer-qr {
-  margin-top: 14px;
-}
-.footer-qr img {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  border: 3px solid rgba(255,255,255,0.15);
-}
+.footer{{
+  background:linear-gradient(135deg,#0D3B0E,#1B5E20);
+  color:#fff;text-align:center;padding:28px 16px;margin:12px 10px;border-radius:12px
+}}
+.footer .f-logo{{font-size:24px;font-weight:800}}
+.footer .f-logo-en{{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-top:2px}}
+.footer .f-divider{{width:30px;height:2px;background:#FF6D00;margin:10px auto;border-radius:2px}}
+.footer .f-actions{{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}}
+.footer .f-actions a{{display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:25px;font-size:13px;font-weight:500;text-decoration:none;transition:.2s;font-family:'Tajawal',sans-serif}}
+.footer .f-location{{font-size:12px;opacity:.6;margin-top:12px;font-weight:300}}
+.footer .f-location a{{color:#FFC107;text-decoration:none}}
+.footer-qr{{margin-top:14px}}
+.footer-qr img{{width:120px;height:120px;border-radius:8px;border:3px solid rgba(255,255,255,.15);margin:0 auto}}
 
-/* ─── MENU ITEMS PADDING ─── */
-.menu-items {
-  padding: 8px 24px 4px;
-}
+/* ─── SEARCH ─── */
+.search-bar{{
+  margin:10px 10px 4px;position:relative
+}}
+.search-bar input{{
+  width:100%;padding:12px 16px 12px 40px;border:2px solid #C8E6C9;
+  border-radius:25px;font-family:'Tajawal',sans-serif;font-size:15px;
+  background:#fff;outline:none;transition:.2s;direction:rtl
+}}
+.search-bar input:focus{{border-color:#FF6D00;box-shadow:0 0 0 3px rgba(255,109,0,.1)}}
+.search-bar input::placeholder{{color:#999}}
+.search-bar .search-icon{{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  font-size:18px;color:#999;pointer-events:none
+}}
 
-/* ─── PRINT STYLES ─── */
-@media print {
-  body { background: white; padding: 0; }
-  .menu-page {
-    max-width: 100%;
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
-  }
-  .section-card {
-    break-inside: avoid;
-    box-shadow: none;
-    border: 1px solid #eee;
-    margin: 12px 10px;
-  }
-  .banner { height: 250px; }
-  @page {
-    size: A4 portrait;
-    margin: 5mm;
-  }
-}
+/* ─── NO RESULTS ─── */
+.no-results{{display:none;text-align:center;padding:30px;color:#999;font-size:16px}}
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  body { padding: 8px; }
-  .menu-page { border-radius: 0; }
-  .restaurant-header { padding: 24px 16px 20px; }
-  .restaurant-header .logo-ar { font-size: 40px; }
-  .restaurant-header .logo-en { font-size: 18px; letter-spacing: 4px; }
-  .restaurant-header .header-info { gap: 12px; font-size: 13px; }
-  .section-card { margin: 10px 6px; border-radius: 8px; }
-  .banner { height: 200px; }
-  .banner-title .ar { font-size: 28px; }
-  .banner-title .en { font-size: 16px; }
-  .section-header { padding: 14px 14px 6px; margin: 0 14px; }
-  .section-header h2 { font-size: 18px; }
-  .menu-items { padding: 6px 14px 2px; }
-  .item-pair-en .item-en-name, .item-pair-ar .item-ar-name { font-size: 12px; }
-  .item-pair-en .item-price-cell, .item-pair-ar .item-price-cell { font-size: 13px; }
-  .price-banner { margin: 0 14px 10px; padding: 10px 14px; flex-wrap: wrap; }
-  .footer { margin: 10px 6px; padding: 24px 14px; }
-}
+@media(min-width:768px){{
+  .menu-page{{max-width:480px;margin:0 auto}}
+  .header .logo-ar{{font-size:48px}}
+  .cat-banner{{height:220px}}
+}}
+
+/* ─── PRINT ─── */
+@media print{{body{{background:#fff}} .cat-nav{{display:none}} .header .h-actions,.search-bar,.footer-qr{{display:none}}}}
+
+/* ─── ACTIVE STATE ─── */
+.cat-section{{scroll-margin-top:70px}}
 </style>
 </head>
 <body>
 
 <div class="menu-page">
 
-<!-- ════════════════ HEADER ════════════════ -->
-<div class="restaurant-header">
-  <div class="logo-ar">دي جي بازا</div>
-  <div class="logo-en">DJ BAZZA</div>
-  <div class="header-divider"></div>
-  <div class="header-info">
-    <span>📞 <a href="tel:0534772776">053 477 2776</a></span>
-    <span>📍 <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">جدة، المملكة العربية السعودية</a></span>
-    <span>🕐 Daily: 12:00 PM - 2:00 AM</span>
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="logo-ar">{R["name_ar"]}</div>
+  <div class="logo-en">{R["name_en"]}</div>
+  <div class="h-divider"></div>
+  <div class="h-sub">وجبات سريعة • مطبق • شاورما • عصائر</div>
+  <div class="h-actions">
+    <a href="{R["wa_url"]}" target="_blank" class="btn-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      واتساب
+    </a>
+    <a href="tel:{R["phone"]}" class="btn-call">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      اتصال
+    </a>
+    <a href="{R["map_url"]}" target="_blank" class="btn-map">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      الموقع
+    </a>
   </div>
 </div>
-<div class="header-accent-line"></div>
 
-'''
+<!-- ══ SEARCH ══ -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="🔍 ابحث في القائمة..." oninput="filterMenu(this.value)">
+</div>
 
-HTML_BOTTOM = '''
-<!-- ════════════════ FOOTER ════════════════ -->
+<!-- ══ STICKY NAV ══ -->
+<nav class="cat-nav" id="catNav">
+{" ".join(nav_tabs)}
+</nav>
+
+<!-- ══ NO RESULTS ══ -->
+<div class="no-results" id="noResults">
+  😕 لا توجد نتائج<br><span style="font-size:13px;color:#bbb">No items found</span>
+</div>
+
+<!-- ══ SECTIONS ══ -->
+{"".join(sections)}
+
+<!-- ══ FOOTER ══ -->
 <div class="footer">
-  <div class="footer-logo">دي جي بازا</div>
-  <div class="footer-logo-en">DJ BAZZA</div>
-  <div class="footer-divider"></div>
-  <div class="footer-contact">
-    <a href="tel:0534772776">📞 053 477 2776</a>
-    <a href="https://wa.me/966534772776" target="_blank">💬 WhatsApp</a>
-    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">📍 الموقع</a>
+  <div class="f-logo">{R["name_ar"]}</div>
+  <div class="f-logo-en">{R["name_en"]}</div>
+  <div class="f-divider"></div>
+  <div class="f-actions">
+    <a href="{R["wa_url"]}" target="_blank" class="btn-wa">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      واتساب
+    </a>
+    <a href="tel:{R["phone"]}" class="btn-call" style="background:#fff;color:#1B5E20;">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      اتصال
+    </a>
+    <a href="{R["map_url"]}" target="_blank" class="btn-map">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      الموقع
+    </a>
   </div>
   <div class="footer-qr">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9&margin=10" alt="Location QR">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rdstudiohub.github.io/DJ-BAZZA-Menu/&margin=10" alt="QR Code">
   </div>
-  <div class="footer-location">
-    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">افتتاح الموقع على الخريطة →</a>
+  <div class="f-location">
+    <a href="{R["map_url"]}" target="_blank">📍 {R["location"]}</a>
   </div>
 </div>
 
 </div>
+
+<script>
+// ─── TAB NAVIGATION ───
+document.querySelectorAll('.cat-tab').forEach(tab => {{
+  tab.addEventListener('click', function(e) {{
+    e.preventDefault();
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    const target = document.querySelector(this.dataset.target);
+    if (target) target.scrollIntoView({{behavior:'smooth',block:'start'}});
+  }});
+}});
+
+// ─── SCROLL SPY ───
+const sections_els = document.querySelectorAll('.cat-section');
+const tabs_els = document.querySelectorAll('.cat-tab');
+const observer = new IntersectionObserver((entries) => {{
+  entries.forEach(entry => {{
+    if (entry.isIntersecting) {{
+      tabs_els.forEach(t => t.classList.remove('active'));
+      const activeTab = document.querySelector(`.cat-tab[data-target="#${{entry.target.id}}"]`);
+      if (activeTab) {{
+        activeTab.classList.add('active');
+        activeTab.scrollIntoView({{behavior:'smooth',inline:'center',block:'nearest'}});
+      }}
+    }}
+  }});
+}}, {{rootMargin:'-70px 0px -50% 0px',threshold:0}});
+sections_els.forEach(s => observer.observe(s));
+
+// ─── SEARCH ───
+function filterMenu(query) {{
+  const q = query.toLowerCase().trim();
+  const items = document.querySelectorAll('.menu-item');
+  let anyVisible = false;
+  items.forEach(item => {{
+    const text = item.textContent.toLowerCase();
+    const match = !q || text.includes(q);
+    item.style.display = match ? '' : 'none';
+    if (match) anyVisible = true;
+  }});
+  sections_els.forEach(section => {{
+    const visibleItems = section.querySelectorAll('.menu-item[style*="display: none"]');
+    const totalItems = section.querySelectorAll('.menu-item').length;
+    const hidden = visibleItems.length;
+    const hasVisible = hidden < totalItems;
+    section.style.display = (!q || hasVisible) ? '' : 'none';
+  }});
+  document.getElementById('noResults').style.display = anyVisible || !q ? 'none' : 'block';
+}}
+</script>
 
 </body>
 </html>'''
 
-# ═══════════════════════════════════════════════
-# BUILD
-# ═══════════════════════════════════════════════
-sections_html = '\n\n'.join(make_section(s) for s in SECTIONS)
-
-full_html = HTML_TOP + sections_html + HTML_BOTTOM
-
+os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 with open(OUTPUT, 'w', encoding='utf-8') as f:
-    f.write(full_html)
+    f.write(HTML)
 
-print(f"✅ Generated DJ BAZZA menu: {OUTPUT}")
-print(f"   Size: {len(full_html):,} bytes")
-print(f"   Lines: {full_html.count(chr(10))}")
+print(f"✅ DJ BAZZA mobile menu generated: {OUTPUT}")
+print(f"   Size: {len(HTML):,} bytes")
+print(f"   Total items: {sum(len(c['items']) for c in CATEGORIES)}")
+print(f"   Categories: {len(CATEGORIES)}")
