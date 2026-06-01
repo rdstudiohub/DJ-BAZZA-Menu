@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJ BAZZA | دي جي بازا - Premium Restaurant Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', 'Tajawal', sans-serif;
+  background: #1B5E20;
+  color: #2C2C2C;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ─── PAGE WRAPPER ─── */
+.menu-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3, h4 { font-family: 'Tajawal', 'Poppins', sans-serif; }
+.ar { font-family: 'Tajawal', sans-serif; direction: rtl; }
+.en { font-family: 'Poppins', sans-serif; }
+
+/* ─── HEADER ─── */
+.restaurant-header {
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 60%, #388E3C 100%);
+  color: #fff;
+  text-align: center;
+  padding: 40px 30px 30px;
+  position: relative;
+  overflow: hidden;
+}
+.restaurant-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,109,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.restaurant-header .logo-ar {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  line-height: 1;
+}
+.restaurant-header .logo-en {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+.restaurant-header .header-divider {
+  width: 60px;
+  height: 3px;
+  background: #FF6D00;
+  margin: 14px auto;
+  border-radius: 2px;
+}
+.restaurant-header .header-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.restaurant-header .header-info span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+.restaurant-header .header-info a {
+  color: #FFC107;
+  text-decoration: none;
+  font-weight: 500;
+}
+.restaurant-header .header-info a:hover {
+  text-decoration: underline;
+}
+.header-accent-line {
+  height: 4px;
+  background: linear-gradient(90deg, #FF6D00, #FF9800, #FFC107, #FF9800, #FF6D00);
+}
+
+/* ─── SECTION CARD ─── */
+.section-card {
+  margin: 16px 20px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(27,94,32,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  border: 1px solid #F0F0F0;
+}
+
+/* ─── BANNER ─── */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(27,94,32,0.6) 0%, rgba(255,109,0,0.25) 100%);
+  z-index: 1;
+}
+.banner-title {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  padding: 20px;
+  width: 100%;
+}
+.banner-title .ar {
+  font-size: 42px;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 4px;
+}
+.banner-title .en {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  padding: 20px 24px 8px;
+  border-bottom: 2px solid #1B5E20;
+  margin: 0 24px;
+}
+.section-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.section-header h2 .en {
+  font-family: 'Poppins', sans-serif;
+  color: #1B5E20;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ─── TWO-LINE ITEMS ─── */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.price-row-en th, .price-row-ar th {
+  padding: 6px 6px;
+  border-bottom: 1px solid #E8F5E9;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #999;
+}
+.price-row-en .th-item { text-align: left; width: 70%; }
+.price-row-ar .th-item { text-align: right; width: 70%; direction: rtl; }
+.price-row-en .th-price, .price-row-ar .th-price { text-align: center; width: 30%; }
+
+.item-pair-en td {
+  padding: 8px 6px 2px;
+  border-bottom: none;
+  vertical-align: bottom;
+}
+.item-pair-ar td {
+  padding: 2px 6px 8px;
+  border-bottom: 1px dashed #E8F5E9;
+  vertical-align: top;
+}
+.item-pair-en .item-en-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+}
+.item-pair-ar .item-ar-name {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  text-align: right;
+  direction: rtl;
+}
+.item-pair-en .item-price-cell,
+.item-pair-ar .item-price-cell {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1B5E20;
+  text-align: center;
+}
+.item-pair-ar .item-price-cell {
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ─── CATEGORY DIVIDER (sub-sections) ─── */
+.category-divider {
+  background: #E8F5E9;
+  padding: 10px 24px;
+  margin: 0;
+  border-top: 1px solid #C8E6C9;
+}
+.category-divider h3 {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1B5E20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.category-divider h3::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #FF6D00);
+}
+.category-divider h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #FF6D00, transparent);
+}
+
+/* ─── PRICE BANNER ─── */
+.price-banner {
+  background: linear-gradient(135deg, #E8F5E9 0%, #FFF3E0 100%);
+  margin: 0 24px 16px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(27,94,32,0.08);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%);
+  color: #fff;
+  text-align: center;
+  padding: 36px 28px;
+  margin: 16px 20px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,109,0,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.footer .footer-logo {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+.footer .footer-logo-en {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.footer .footer-divider {
+  width: 40px;
+  height: 2px;
+  background: #FF6D00;
+  margin: 12px auto;
+  border-radius: 2px;
+}
+.footer .footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.footer .footer-contact a {
+  color: #FFC107;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer .footer-location {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 10px;
+  font-weight: 300;
+}
+.footer .footer-location a {
+  color: #FFC107;
+  text-decoration: none;
+}
+.footer-qr {
+  margin-top: 14px;
+}
+.footer-qr img {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  border: 3px solid rgba(255,255,255,0.15);
+}
+
+/* ─── MENU ITEMS PADDING ─── */
+.menu-items {
+  padding: 8px 24px 4px;
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  body { background: white; padding: 0; }
+  .menu-page {
+    max-width: 100%;
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0;
+  }
+  .section-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #eee;
+    margin: 12px 10px;
+  }
+  .banner { height: 250px; }
+  @page {
+    size: A4 portrait;
+    margin: 5mm;
+  }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  body { padding: 8px; }
+  .menu-page { border-radius: 0; }
+  .restaurant-header { padding: 24px 16px 20px; }
+  .restaurant-header .logo-ar { font-size: 40px; }
+  .restaurant-header .logo-en { font-size: 18px; letter-spacing: 4px; }
+  .restaurant-header .header-info { gap: 12px; font-size: 13px; }
+  .section-card { margin: 10px 6px; border-radius: 8px; }
+  .banner { height: 200px; }
+  .banner-title .ar { font-size: 28px; }
+  .banner-title .en { font-size: 16px; }
+  .section-header { padding: 14px 14px 6px; margin: 0 14px; }
+  .section-header h2 { font-size: 18px; }
+  .menu-items { padding: 6px 14px 2px; }
+  .item-pair-en .item-en-name, .item-pair-ar .item-ar-name { font-size: 12px; }
+  .item-pair-en .item-price-cell, .item-pair-ar .item-price-cell { font-size: 13px; }
+  .price-banner { margin: 0 14px 10px; padding: 10px 14px; flex-wrap: wrap; }
+  .footer { margin: 10px 6px; padding: 24px 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="menu-page">
+
+<!-- ════════════════ HEADER ════════════════ -->
+<div class="restaurant-header">
+  <div class="logo-ar">دي جي بازا</div>
+  <div class="logo-en">DJ BAZZA</div>
+  <div class="header-divider"></div>
+  <div class="header-info">
+    <span>📞 <a href="tel:0534772776">053 477 2776</a></span>
+    <span>📍 <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">جدة، المملكة العربية السعودية</a></span>
+    <span>🕐 Daily: 12:00 PM - 2:00 AM</span>
+  </div>
+</div>
+<div class="header-accent-line"></div>
+
+<div class="section-card">
+  <div class="banner">
+    <img src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=1400&q=85&auto=format" alt="ALMUTBIQ" loading="lazy">
+    <div class="banner-overlay"></div>
+    <div class="banner-title">
+      <span class="ar">المطبق</span>
+      <span class="en">ALMUTBIQ</span>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2><span class="en">ALMUTBIQ</span> <span class="ar" style="color:#FF6D00;">المطبق</span></h2>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">ALMUTBIQ</th><th class="th-price">All 10 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">المطبق</th><th class="th-price">الكل 10 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Meat Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق لحم</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Chicken Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق دجاج</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Vegetable Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق خضار</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Mozzarella Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق جبن موزاريلا</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Burger Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق برجر</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Banana Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق موز</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cream Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق قشطة</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheddar Cheese Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق جبن شيدر</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Liquid Cheese Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق جبن سائل</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Halloumi Cheese Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق جبن حلومي</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Vegetable Cheese Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق خضار جبن</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Double Cheese Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق جبن دبل</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Double Meat Mutbaq</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مطبق لحم دبل</td><td class="item-price-cell">10 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">الكل 10 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:20px;">10 SAR</span>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="banner">
+    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=1400&q=85&auto=format" alt="SIDE DISHES" loading="lazy">
+    <div class="banner-overlay"></div>
+    <div class="banner-title">
+      <span class="ar">أطباق جانبية</span>
+      <span class="en">SIDE DISHES</span>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2><span class="en">SIDE DISHES</span> <span class="ar" style="color:#FF6D00;">أطباق جانبية</span></h2>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">SIDE DISHES</th><th class="th-price">6 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">أطباق جانبية</th><th class="th-price">6 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheese Fries</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">بطاطس جبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Chicken Cheese Fries</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">بطاطس دجاج وجبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheddar Cheese Fries</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شيدر اند جبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Regular Garlic Sauce</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">ثوم عادي</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Spicy Garlic Sauce</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">ثوم حار</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Hummus</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">حمص</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Tahini</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">طحينة</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Mayonnaise</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مايونيز</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheese Sauce</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">جبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Plain Fries</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">بطاطس عادي</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheese Burger</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">برجر جبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Regular Burger</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">برجر عادي</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Hot Feta Cheese</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">فتة جبن</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Mixed Fries</td><td class="item-price-cell">6 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مشكلة بطاطس</td><td class="item-price-cell">6 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">6 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:20px;">6 SAR</span>
+  </div>
+  <div class="category-divider">
+    <h3>مشكلات المعصوب <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">MASOUB & SPECIALS</span></h3>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">MASOUB & SPECIALS</th><th class="th-price">15 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">مشكلات المعصوب</th><th class="th-price">15 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Honey Cream Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب عسل</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Honey Cheese Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب جبن</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Honey Cream Mix Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب قشطة عسل</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Honey Banana Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب موز عسل</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Royal Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب ملكي</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Royal Mixed Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب ملكي مشكلة</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Royal Cream Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب ملكي قشطة</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Plain Cream Masoub</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">معصوب قشطة عادي</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Royal Fattah</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">فتة ملكي</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Grape Juice</td><td class="item-price-cell">15 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">زبيب عنب</td><td class="item-price-cell">15 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">15 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">15 SAR</span>
+    <span style="color:#ddd;margin:0 10px;">|</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">15 SAR</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">15 SAR</span>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="banner">
+    <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=1400&q=85&auto=format" alt="SHAWARMA" loading="lazy">
+    <div class="banner-overlay"></div>
+    <div class="banner-title">
+      <span class="ar">شاورما</span>
+      <span class="en">SHAWARMA</span>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2><span class="en">SHAWARMA</span> <span class="ar" style="color:#FF6D00;">شاورما</span></h2>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">SHAWARMA</th><th class="th-price">Small 8 • Large 12 • Plate 20</th></tr>
+      <tr class="price-row-ar"><th class="th-item">شاورما</th><th class="th-price">صغير 8 • كبير 12 • صحن 20</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Small Chicken Shawarma</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاورما دجاج صغير</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Large Chicken Shawarma</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاورما دجاج كبير</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Small Arabic Chicken Shawarma</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاورما عربي دجاج صغير</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Large Arabic Chicken Shawarma</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاورما عربي دجاج كبير</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Chicken Shawarma Plate</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">صحن شاورما دجاج</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Arabic Chicken Shawarma Plate</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">صحن شاورما عربي دجاج</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Shawarma Crispy</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاورما كرسبي</td><td class="item-price-cell">8 - 20 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">Small: 8 SAR • Large: 12 SAR • Plate: 20 SAR</span>
+  </div>
+  <div class="category-divider">
+    <h3>إضافات <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">EXTRAS</span></h3>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">EXTRAS</th><th class="th-price">5 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">إضافات</th><th class="th-price">5 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Fasolia</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">فاصوليا</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Falafel Sandwich</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">ساندوتش فلافل</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Liver Sandwich</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">ساندوتش كبدة</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">3 Pieces Falafel</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">فلافل 3 حبات</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Cheese Sambusa</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">سمبوسة جبن</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Meat Sambusa</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">سمبوسة لحم</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Chicken Sambusa</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">سمبوسة دجاج</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Vegetable Sambusa</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">سمبوسة خضار</td><td class="item-price-cell">5 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">5 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">5 SAR</span>
+    <span style="color:#ddd;margin:0 10px;">|</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">5 SAR</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">5 SAR</span>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="banner">
+    <img src="https://images.unsplash.com/photo-1544252910-5f7e8f5a7f5e?w=1400&q=85&auto=format" alt="DRINKS" loading="lazy">
+    <div class="banner-overlay"></div>
+    <div class="banner-title">
+      <span class="ar">المشروبات</span>
+      <span class="en">DRINKS</span>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2><span class="en">DRINKS</span> <span class="ar" style="color:#FF6D00;">المشروبات</span></h2>
+  </div>
+  <div class="category-divider">
+    <h3>عصائر طازجة <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">FRESH JUICES</span></h3>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">FRESH JUICES</th><th class="th-price">10 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">عصائر طازجة</th><th class="th-price">10 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Fresh Orange Juice</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">برتقال فريش</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Fresh Cocktail Juice</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">كوكتيل فريش</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Fresh Mango Juice</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">مانجو فريش</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Fresh Pomegranate Juice</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">رمان</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Banana Milk Juice</td><td class="item-price-cell">10 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">موز حليب</td><td class="item-price-cell">10 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">10 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">10 SAR</span>
+    <span style="color:#ddd;margin:0 10px;">|</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">10 SAR</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">10 SAR</span>
+  </div>
+  <div class="category-divider">
+    <h3>مشروبات غازية <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">SOFT DRINKS</span></h3>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">SOFT DRINKS</th><th class="th-price">3 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">مشروبات غازية</th><th class="th-price">3 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Pepsi</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">بيبسي</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Diet Pepsi</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">بيبسي دايت</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">7UP</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">سفن أب</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Mirinda</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">ميرندا</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Spring Juice</td><td class="item-price-cell">3 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">عصير ربيع</td><td class="item-price-cell">3 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">3 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">3 SAR</span>
+    <span style="color:#ddd;margin:0 10px;">|</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">3 SAR</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">3 SAR</span>
+  </div>
+  <div class="category-divider">
+    <h3>مشروبات ساخنة <span style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;color:#999;">HOT DRINKS</span></h3>
+  </div>
+  <div class="menu-items">
+    <table class="menu-table">
+      <tr class="price-row-en"><th class="th-item">HOT DRINKS</th><th class="th-price">5 SAR</th></tr>
+      <tr class="price-row-ar"><th class="th-item">مشروبات ساخنة</th><th class="th-price">5 ريال</th></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Tea</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاي</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Adani Tea</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاي عدني</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Nescafe</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">نسكافيه</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Black Tea</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">شاي سادة</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-en"><td class="item-en-name">Karak Tea</td><td class="item-price-cell">5 SAR</td></tr>
+      <tr class="item-pair-ar"><td class="item-ar-name">كرك</td><td class="item-price-cell">5 SAR</td></tr>
+    </table>
+  </div>
+  <div class="price-banner">
+    <span style="font-family:'Tajawal',sans-serif;font-weight:600;color:#666;">5 ريال</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">5 SAR</span>
+    <span style="color:#ddd;margin:0 10px;">|</span>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:600;color:#666;">5 SAR</span>
+    <span style="font-weight:700;color:#1B5E20;font-size:18px;">5 SAR</span>
+  </div>
+</div>
+<!-- ════════════════ FOOTER ════════════════ -->
+<div class="footer">
+  <div class="footer-logo">دي جي بازا</div>
+  <div class="footer-logo-en">DJ BAZZA</div>
+  <div class="footer-divider"></div>
+  <div class="footer-contact">
+    <a href="tel:0534772776">📞 053 477 2776</a>
+    <a href="https://wa.me/966534772776" target="_blank">💬 WhatsApp</a>
+    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">📍 الموقع</a>
+  </div>
+  <div class="footer-qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9&margin=10" alt="Location QR">
+  </div>
+  <div class="footer-location">
+    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">افتتاح الموقع على الخريطة →</a>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
