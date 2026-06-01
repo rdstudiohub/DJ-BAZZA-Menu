@@ -2,817 +2,196 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>دي جي بازا | DJ BAZZA - القائمة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* ─── RESET ─── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{font-family:'Tajawal','Poppins',sans-serif;background:#0D3B0E;color:#333;min-height:100vh;overflow-x:hidden;direction:rtl}
+<style>*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:62px}
+body{font-family:'Tajawal','Poppins',sans-serif;background:#0D3B0E;color:#333;min-height:100vh;overflow-x:hidden;direction:rtl;padding:0;margin:0}
 img{max-width:100%;height:auto;display:block}
 
-/* ─── HEADER ─── */
-.header{
-  background:linear-gradient(135deg,#0D3B0E 0%,#1B5E20 50%,#2E7D32 100%);
-  color:#fff;text-align:center;padding:28px 16px 20px;
-  position:relative;overflow:hidden
-}
-.header::before{
-  content:'';position:absolute;top:-60%;left:-50%;width:200%;height:200%;
-  background:radial-gradient(circle,rgba(255,109,0,0.08) 0%,transparent 60%);pointer-events:none
-}
-.header .logo-ar{font-size:42px;font-weight:900;letter-spacing:1px;line-height:1.2}
-.header .logo-en{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:5px;text-transform:uppercase;opacity:.85;margin-top:2px}
-.header .h-divider{width:50px;height:3px;background:#FF6D00;margin:10px auto;border-radius:2px}
-.header .h-sub{font-size:13px;opacity:.7;font-weight:300}
-.header .h-actions{
-  display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap
-}
-.header .h-actions a{
-  display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:25px;
-  font-size:13px;font-weight:500;text-decoration:none;transition:.2s;
-  font-family:'Tajawal',sans-serif
-}
+/* HEADER */
+.header{background:linear-gradient(135deg,#0D3B0E 0%,#1B5E20 50%,#2E7D32 100%);color:#fff;text-align:center;padding:24px 14px 18px;position:relative}
+.header .logo-ar{font-size:38px;font-weight:900;line-height:1.2}
+.header .logo-en{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;letter-spacing:5px;text-transform:uppercase;opacity:.85}
+.header .hd{width:40px;height:3px;background:#FF6D00;margin:8px auto;border-radius:2px}
+.header .h-actions{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.header .h-actions a{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:25px;font-size:12px;font-weight:500;text-decoration:none;font-family:'Tajawal',sans-serif}
 .btn-wa{background:#25D366;color:#fff}
 .btn-call{background:#fff;color:#1B5E20}
 .btn-map{background:#FF6D00;color:#fff}
-.header .h-actions a:hover{transform:scale(1.05);opacity:.9}
-.header .h-actions svg{width:18px;height:18px;fill:currentColor}
 
-/* ─── STICKY NAV ─── */
-.cat-nav{
-  position:sticky;top:0;z-index:100;
-  background:#0D3B0E;padding:8px 8px;overflow-x:auto;
-  display:flex;gap:6px;white-space:nowrap;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  border-bottom:2px solid #FF6D00
-}
+/* STICKY NAV */
+.cat-nav{position:sticky;top:0;z-index:100;background:#0D3B0E;padding:6px 6px;overflow-x:auto;display:flex;gap:5px;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:3px solid #FF6D00}
 .cat-nav::-webkit-scrollbar{display:none}
-.cat-tab{
-  flex-shrink:0;padding:6px 12px;border:none;border-radius:20px;
-  font-family:'Tajawal',sans-serif;font-size:13px;font-weight:500;
-  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
-  cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2
-}
-.cat-tab .tab-en{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;text-transform:uppercase;letter-spacing:.5px;opacity:.7}
+.cat-tab{flex-shrink:0;padding:6px 10px;border:none;border-radius:18px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:500;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2;touch-action:manipulation}
+.cat-tab .tab-en{font-family:'Poppins',sans-serif;font-size:8px;font-weight:400;text-transform:uppercase;letter-spacing:.5px;opacity:.7}
 .cat-tab.active,.cat-tab:active{background:#FF6D00;color:#fff;box-shadow:0 2px 10px rgba(255,109,0,.3)}
 .cat-tab.active .tab-en{opacity:1}
 
-/* ─── CATEGORY SECTIONS ─── */
-.cat-section{margin-bottom:12px;background:#fff;border-radius:12px;overflow:hidden;margin:12px 10px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-.cat-banner{position:relative;height:180px;overflow:hidden}
-.cat-banner img{width:100%;height:100%;object-fit:cover}
-.cat-banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,59,14,.7) 0%,rgba(255,109,0,.3) 100%);z-index:1}
-.cat-banner-text{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:12px}
-.cat-banner-ar{font-size:30px;font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,.3)}
-.cat-banner-en{font-family:'Poppins',sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;text-transform:uppercase;opacity:.9;text-shadow:0 1px 6px rgba(0,0,0,.3)}
-
-/* ─── CATEGORY ITEMS ─── */
-.cat-items{padding:8px 14px 12px}
-.menu-item{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 0;border-bottom:1px dashed #E8F5E9;gap:10px
-}
-.menu-item:last-child{border-bottom:none}
-.item-info{flex:1;min-width:0}
-.item-name-en{
-  font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;
-  color:#333;display:block;direction:ltr;text-align:left
-}
-.item-name-ar{
-  font-family:'Tajawal',sans-serif;font-size:15px;font-weight:500;
-  color:#555;display:block;margin-top:1px
-}
-.item-price-tag{
-  font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;
-  color:#1B5E20;white-space:nowrap;background:#E8F5E9;
-  padding:4px 10px;border-radius:8px;flex-shrink:0
-}
-.item-prices{
-  display:flex;gap:4px;flex-wrap:wrap;flex-shrink:0;justify-content:flex-start
-}
-.size-tag{
-  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;
-  color:#1B5E20;background:#E8F5E9;padding:3px 8px;border-radius:6px;
-  white-space:nowrap
-}
-
-/* ─── FOOTER ─── */
-.footer{
-  background:linear-gradient(135deg,#0D3B0E,#1B5E20);
-  color:#fff;text-align:center;padding:28px 16px;margin:12px 10px;border-radius:12px
-}
-.footer .f-logo{font-size:24px;font-weight:800}
-.footer .f-logo-en{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-top:2px}
-.footer .f-divider{width:30px;height:2px;background:#FF6D00;margin:10px auto;border-radius:2px}
-.footer .f-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.footer .f-actions a{display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:25px;font-size:13px;font-weight:500;text-decoration:none;transition:.2s;font-family:'Tajawal',sans-serif}
-.footer .f-location{font-size:12px;opacity:.6;margin-top:12px;font-weight:300}
-.footer .f-location a{color:#FFC107;text-decoration:none}
-.footer-qr{margin-top:14px}
-.footer-qr img{width:120px;height:120px;border-radius:8px;border:3px solid rgba(255,255,255,.15);margin:0 auto}
-
-/* ─── SEARCH ─── */
-.search-bar{
-  margin:10px 10px 4px;position:relative
-}
-.search-bar input{
-  width:100%;padding:12px 16px 12px 40px;border:2px solid #C8E6C9;
-  border-radius:25px;font-family:'Tajawal',sans-serif;font-size:15px;
-  background:#fff;outline:none;transition:.2s;direction:rtl
-}
+/* SEARCH */
+.search-bar{margin:8px 10px 2px}
+.search-bar input{width:100%;padding:10px 14px;border:2px solid #C8E6C9;border-radius:25px;font-family:'Tajawal',sans-serif;font-size:14px;background:#fff;outline:none;transition:.2s;direction:rtl}
 .search-bar input:focus{border-color:#FF6D00;box-shadow:0 0 0 3px rgba(255,109,0,.1)}
-.search-bar input::placeholder{color:#999}
-.search-bar .search-icon{
-  position:absolute;left:14px;top:50%;transform:translateY(-50%);
-  font-size:18px;color:#999;pointer-events:none
-}
 
-/* ─── NO RESULTS ─── */
-.no-results{display:none;text-align:center;padding:30px;color:#999;font-size:16px}
+/* CATEGORY SECTION */
+.cat-section{margin:8px 8px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.cat-banner{position:relative;height:160px;overflow:hidden}
+.cat-banner img{width:100%;height:100%;object-fit:cover}
+.cat-banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,59,14,.65) 0%,rgba(255,109,0,.25) 100%);z-index:1}
+.cat-banner-text{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:10px}
+.cat-banner-ar{font-size:26px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.cat-banner-en{font-family:'Poppins',sans-serif;font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;opacity:.9}
 
-/* ─── RESPONSIVE ─── */
-@media(min-width:768px){
-  .menu-page{max-width:480px;margin:0 auto}
-  .header .logo-ar{font-size:48px}
-  .cat-banner{height:220px}
-}
+/* ITEMS */
+.cat-items{padding:6px 10px 8px}
+.menu-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #E8F5E9}
+.menu-item:last-child{border-bottom:none}
+.item-thumb{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;border:2px solid #E8F5E9}
+.item-info{flex:1;min-width:0}
+.item-name-en{font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#333;display:block;direction:ltr;text-align:left}
+.item-name-ar{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:500;color:#555;display:block;margin-top:1px}
+.item-price-tag{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:#1B5E20;white-space:nowrap;background:#E8F5E9;padding:4px 10px;border-radius:8px;flex-shrink:0}
+.item-prices{display:flex;gap:3px;flex-wrap:wrap;flex-shrink:0}
+.size-tag{font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;color:#1B5E20;background:#E8F5E9;padding:3px 7px;border-radius:6px;white-space:nowrap}
 
-/* ─── PRINT ─── */
-@media print{body{background:#fff} .cat-nav{display:none} .header .h-actions,.search-bar,.footer-qr{display:none}}
-
-/* ─── ACTIVE STATE ─── */
-.cat-section{scroll-margin-top:70px}
-</style>
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0D3B0E,#1B5E20);color:#fff;text-align:center;padding:24px 14px;margin:8px;border-radius:12px}
+.footer .fl{font-size:22px;font-weight:800}
+.footer .fle{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;letter-spacing:3px;text-transform:uppercase;opacity:.7}
+.footer .fd{width:30px;height:2px;background:#FF6D00;margin:8px auto;border-radius:2px}
+.footer .fa{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.footer .fa a{display:flex;align-items:center;gap:5px;padding:8px 16px;border-radius:25px;font-size:12px;font-weight:500;text-decoration:none;font-family:'Tajawal',sans-serif}
+.footer .floc{font-size:11px;opacity:.6;margin-top:10px}
+.footer .floc a{color:#FFC107;text-decoration:none}
+.footer-qr{margin-top:12px}
+.footer-qr img{width:110px;height:110px;border-radius:8px;border:3px solid rgba(255,255,255,.15);margin:0 auto}
+.no-results{display:none;text-align:center;padding:30px;color:#999;font-size:15px}
+@media(min-width:768px){.menu-page{max-width:480px;margin:0 auto}}
+@media print{body{background:#fff} .cat-nav,.search-bar,.footer-qr,.header .h-actions{display:none}}</style>
 </head>
 <body>
-
 <div class="menu-page">
 
-<!-- ══ HEADER ══ -->
 <div class="header">
   <div class="logo-ar">دي جي بازا</div>
   <div class="logo-en">DJ BAZZA</div>
-  <div class="h-divider"></div>
-  <div class="h-sub">وجبات سريعة • مطبق • شاورما • عصائر</div>
+  <div class="hd"></div>
   <div class="h-actions">
-    <a href="https://wa.me/966534772776" target="_blank" class="btn-wa">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      واتساب
-    </a>
-    <a href="tel:0534772776" class="btn-call">
-      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      اتصال
-    </a>
-    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank" class="btn-map">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      الموقع
-    </a>
+    <a href="https://wa.me/966534772776" target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> واتساب</a>
+    <a href="tel:0534772776" class="btn-call"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> اتصال</a>
+    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank" class="btn-map"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> الموقع</a>
   </div>
 </div>
 
-<!-- ══ SEARCH ══ -->
-<div class="search-bar">
-  <input type="text" id="searchInput" placeholder="🔍 ابحث في القائمة..." oninput="filterMenu(this.value)">
-</div>
+<div class="search-bar"><input type="text" id="searchInput" placeholder="🔍 ابحث في القائمة..." oninput="filterMenu(this.value)"></div>
 
-<!-- ══ STICKY NAV ══ -->
 <nav class="cat-nav" id="catNav">
-<button class="cat-tab active" data-target="#mutbaq"><span class="tab-ar">المطبق</span><span class="tab-en">ALMUTBIQ</span></button> <button class="cat-tab" data-target="#sides"><span class="tab-ar">أطباق جانبية</span><span class="tab-en">SIDE DISHES</span></button> <button class="cat-tab" data-target="#masoub"><span class="tab-ar">معصوب</span><span class="tab-en">MASOUB</span></button> <button class="cat-tab" data-target="#shawarma"><span class="tab-ar">شاورما</span><span class="tab-en">SHAWARMA</span></button> <button class="cat-tab" data-target="#extras"><span class="tab-ar">إضافات</span><span class="tab-en">EXTRAS</span></button> <button class="cat-tab" data-target="#juices"><span class="tab-ar">العصائر الطازجة</span><span class="tab-en">FRESH JUICES</span></button> <button class="cat-tab" data-target="#softdrinks"><span class="tab-ar">المشروبات الغازية</span><span class="tab-en">SOFT DRINKS</span></button> <button class="cat-tab" data-target="#hotdrinks"><span class="tab-ar">المشروبات الساخنة</span><span class="tab-en">HOT DRINKS</span></button>
+<button class="cat-tab active" data-target="mutbaq"><span class="tab-ar">المطبق</span><span class="tab-en">ALMUTBIQ</span></button> <button class="cat-tab" data-target="sides"><span class="tab-ar">أطباق جانبية</span><span class="tab-en">SIDE DISHES</span></button> <button class="cat-tab" data-target="masoub"><span class="tab-ar">معصوب</span><span class="tab-en">MASOUB</span></button> <button class="cat-tab" data-target="shawarma"><span class="tab-ar">شاورما</span><span class="tab-en">SHAWARMA</span></button> <button class="cat-tab" data-target="extras"><span class="tab-ar">إضافات</span><span class="tab-en">EXTRAS</span></button> <button class="cat-tab" data-target="juices"><span class="tab-ar">العصائر الطازجة</span><span class="tab-en">FRESH JUICES</span></button> <button class="cat-tab" data-target="softdrinks"><span class="tab-ar">المشروبات الغازية</span><span class="tab-en">SOFT DRINKS</span></button> <button class="cat-tab" data-target="hotdrinks"><span class="tab-ar">المشروبات الساخنة</span><span class="tab-en">HOT DRINKS</span></button>
 </nav>
 
-<!-- ══ NO RESULTS ══ -->
-<div class="no-results" id="noResults">
-  😕 لا توجد نتائج<br><span style="font-size:13px;color:#bbb">No items found</span>
-</div>
+<div class="no-results" id="noResults">😕 لا توجد نتائج<br><span style="font-size:13px;color:#bbb">No items found</span></div>
 
-<!-- ══ SECTIONS ══ -->
 <section id="mutbaq" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=800&q=85&auto=format" alt="ALMUTBIQ" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">المطبق</span>
-      <span class="cat-banner-en">ALMUTBIQ</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Meat Mutbaq</span>
-        <span class="item-name-ar">مطبق لحم</span>
-      </div>
-      <div class="item-price-tag">9 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Chicken Mutbaq</span>
-        <span class="item-name-ar">مطبق دجاج</span>
-      </div>
-      <div class="item-price-tag">10 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Vegetable Mutbaq</span>
-        <span class="item-name-ar">مطبق خضار</span>
-      </div>
-      <div class="item-price-tag">6 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Mozzarella Mutbaq</span>
-        <span class="item-name-ar">مطبق جبن موزاريلا</span>
-      </div>
-      <div class="item-price-tag">8 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Burger Mutbaq</span>
-        <span class="item-name-ar">مطبق برجر</span>
-      </div>
-      <div class="item-price-tag">7 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Banana Mutbaq</span>
-        <span class="item-name-ar">مطبق موز</span>
-      </div>
-      <div class="item-price-tag">7 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cream Mutbaq</span>
-        <span class="item-name-ar">مطبق قشطة</span>
-      </div>
-      <div class="item-price-tag">7 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheddar Cheese Mutbaq</span>
-        <span class="item-name-ar">مطبق جبن شيدر</span>
-      </div>
-      <div class="item-price-tag">7 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Liquid Cheese Mutbaq</span>
-        <span class="item-name-ar">مطبق جبن سائل</span>
-      </div>
-      <div class="item-price-tag">8 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Halloumi Cheese Mutbaq</span>
-        <span class="item-name-ar">مطبق جبن حلومي</span>
-      </div>
-      <div class="item-price-tag">11 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Double Vegetable Mutbaq</span>
-        <span class="item-name-ar">مطبق خضار دبل</span>
-      </div>
-      <div class="item-price-tag">11 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Double Cheese Mutbaq</span>
-        <span class="item-name-ar">مطبق جبن دبل</span>
-      </div>
-      <div class="item-price-tag">13 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Double Meat Mutbaq</span>
-        <span class="item-name-ar">مطبق لحم دبل</span>
-      </div>
-      <div class="item-price-tag">16 SAR</div>
-    </div>
-  </div>
-</section><section id="sides" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=85&auto=format" alt="SIDE DISHES" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">أطباق جانبية</span>
-      <span class="cat-banner-en">SIDE DISHES</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Fries</span>
-        <span class="item-name-ar">بطاطس جبن</span>
-      </div>
-      <div class="item-price-tag">9 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Chicken Cheese Fries</span>
-        <span class="item-name-ar">بطاطس دجاج وجبن</span>
-      </div>
-      <div class="item-price-tag">15 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheddar &amp; Cheese</span>
-        <span class="item-name-ar">شيدر اند جبن</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Regular Garlic</span>
-        <span class="item-name-ar">ثوم عادي</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Spicy Garlic</span>
-        <span class="item-name-ar">ثوم حار</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Hummus</span>
-        <span class="item-name-ar">حمص</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Tahini</span>
-        <span class="item-name-ar">طحينة</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Mayonnaise</span>
-        <span class="item-name-ar">مايونيز</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Sauce</span>
-        <span class="item-name-ar">جبن</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Plain Fries</span>
-        <span class="item-name-ar">بطاطس عادي</span>
-      </div>
-      <div class="item-price-tag">7 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Burger</span>
-        <span class="item-name-ar">برجر جبن</span>
-      </div>
-      <div class="item-price-tag">11 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Regular Burger</span>
-        <span class="item-name-ar">برجر عادي</span>
-      </div>
-      <div class="item-price-tag">10 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Fattah</span>
-        <span class="item-name-ar">فتة جبن</span>
-      </div>
-      <div class="item-price-tag">8 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Hot Fattah</span>
-        <span class="item-name-ar">فتة حنيش</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-  </div>
-</section><section id="masoub" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=85&auto=format" alt="MASOUB" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">معصوب</span>
-      <span class="cat-banner-en">MASOUB</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Honey Masoub</span>
-        <span class="item-name-ar">معصوب عسل</span>
-      </div>
-      <div class="item-price-tag">8 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Masoub</span>
-        <span class="item-name-ar">معصوب جبن</span>
-      </div>
-      <div class="item-price-tag">13 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Honey Cream Masoub</span>
-        <span class="item-name-ar">معصوب قشطة عسل</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Honey Banana Masoub</span>
-        <span class="item-name-ar">معصوب موز عسل</span>
-      </div>
-      <div class="item-price-tag">15 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Royal Masoub</span>
-        <span class="item-name-ar">معصوب ملكي</span>
-      </div>
-      <div class="item-price-tag">15 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Royal Mixed Masoub</span>
-        <span class="item-name-ar">معصوب ملكي مشكلة</span>
-      </div>
-      <div class="item-price-tag">15 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Royal Cream Masoub</span>
-        <span class="item-name-ar">معصوب ملكي قشطة</span>
-      </div>
-      <div class="item-price-tag">18 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Mixed Cream Masoub</span>
-        <span class="item-name-ar">معصوب قشطة مشكلة</span>
-      </div>
-      <div class="item-price-tag">18 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Plain Cream Masoub</span>
-        <span class="item-name-ar">معصوب قشطة عادي</span>
-      </div>
-      <div class="item-price-tag">6 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Royal Fattah</span>
-        <span class="item-name-ar">فتة ملكي</span>
-      </div>
-      <div class="item-price-tag">10 SAR</div>
-    </div>
-  </div>
-</section><section id="shawarma" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=800&q=85&auto=format" alt="SHAWARMA" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">شاورما</span>
-      <span class="cat-banner-en">SHAWARMA</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Chicken Shawarma</span>
-        <span class="item-name-ar">شاورما دجاج</span>
-      </div>
-      <div class="item-prices"><span class="size-tag">Small: 7 SAR</span> <span class="size-tag">Large: 12 SAR</span></div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Arabic Chicken Shawarma</span>
-        <span class="item-name-ar">شاورما عربي دجاج</span>
-      </div>
-      <div class="item-prices"><span class="size-tag">Small: 15 SAR</span> <span class="size-tag">Large: 17 SAR</span></div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Chicken Shawarma Plate</span>
-        <span class="item-name-ar">صحن شاورما دجاج</span>
-      </div>
-      <div class="item-prices"><span class="size-tag">Regular: 21 SAR</span></div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Arabic Shawarma Plate</span>
-        <span class="item-name-ar">صحن شاورما عربي دجاج</span>
-      </div>
-      <div class="item-prices"><span class="size-tag">Large: 26 SAR</span></div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Crispy Shawarma</span>
-        <span class="item-name-ar">شاورما كرسبي</span>
-      </div>
-      <div class="item-prices"><span class="size-tag">Regular: 10 SAR</span></div>
-    </div>
-  </div>
-</section><section id="extras" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=800&q=85&auto=format" alt="EXTRAS" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">إضافات</span>
-      <span class="cat-banner-en">EXTRAS</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Fasolia</span>
-        <span class="item-name-ar">فاصوليا</span>
-      </div>
-      <div class="item-price-tag">8 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Falafel Sandwich</span>
-        <span class="item-name-ar">ساندوتش فلافل</span>
-      </div>
-      <div class="item-price-tag">4 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Liver Sandwich</span>
-        <span class="item-name-ar">ساندوتش كبدة</span>
-      </div>
-      <div class="item-price-tag">5 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">3 Pieces Falafel</span>
-        <span class="item-name-ar">فلافل 3 حبات</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Cheese Sambusa</span>
-        <span class="item-name-ar">سمبوسة جبن</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Meat Sambusa</span>
-        <span class="item-name-ar">سمبوسة لحم</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Chicken Sambusa</span>
-        <span class="item-name-ar">سمبوسة دجاج</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Vegetable Sambusa</span>
-        <span class="item-name-ar">سمبوسة خضار</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-  </div>
-</section><section id="juices" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=800&q=85&auto=format" alt="FRESH JUICES" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">العصائر الطازجة</span>
-      <span class="cat-banner-en">FRESH JUICES</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Fresh Orange Juice</span>
-        <span class="item-name-ar">برتقال فريش</span>
-      </div>
-      <div class="item-price-tag">10 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Fresh Cocktail Juice</span>
-        <span class="item-name-ar">كوكتيل فريش</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Fresh Mango Juice</span>
-        <span class="item-name-ar">مانجو فريش</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Banana Milk Juice</span>
-        <span class="item-name-ar">موز حليب</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Fresh Pomegranate Juice</span>
-        <span class="item-name-ar">رمان</span>
-      </div>
-      <div class="item-price-tag">12 SAR</div>
-    </div>
-  </div>
-</section><section id="softdrinks" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&q=85&auto=format" alt="SOFT DRINKS" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">المشروبات الغازية</span>
-      <span class="cat-banner-en">SOFT DRINKS</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Pepsi</span>
-        <span class="item-name-ar">بيبسي</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Diet Pepsi</span>
-        <span class="item-name-ar">بيبسي دايت</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">7UP</span>
-        <span class="item-name-ar">سفن أب</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Mirinda</span>
-        <span class="item-name-ar">ميرندا</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Spring Juice</span>
-        <span class="item-name-ar">عصير ربيع</span>
-      </div>
-      <div class="item-price-tag">2.5 SAR</div>
-    </div>
-  </div>
-</section><section id="hotdrinks" class="cat-section">
-  <div class="cat-banner">
-    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85&auto=format" alt="HOT DRINKS" loading="lazy">
-    <div class="cat-banner-overlay"></div>
-    <div class="cat-banner-text">
-      <span class="cat-banner-ar">المشروبات الساخنة</span>
-      <span class="cat-banner-en">HOT DRINKS</span>
-    </div>
-  </div>
-  <div class="cat-items">
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Tea</span>
-        <span class="item-name-ar">شاي</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Adani Tea</span>
-        <span class="item-name-ar">شاي عدني</span>
-      </div>
-      <div class="item-price-tag">2 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Nescafe</span>
-        <span class="item-name-ar">نسكافيه</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Black Tea</span>
-        <span class="item-name-ar">شاي سادة</span>
-      </div>
-      <div class="item-price-tag">1 SAR</div>
-    </div>
-    <div class="menu-item">
-      <div class="item-info">
-        <span class="item-name-en">Karak Tea</span>
-        <span class="item-name-ar">كرك</span>
-      </div>
-      <div class="item-price-tag">3 SAR</div>
-    </div>
-  </div>
-</section>
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=800&q=85&auto=format" alt="ALMUTBIQ" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">المطبق</span><span class="cat-banner-en">ALMUTBIQ</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Meat Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Meat Mutbaq</span><span class="item-name-ar">مطبق لحم</span></div><div class="item-price-tag">9 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Chicken Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Chicken Mutbaq</span><span class="item-name-ar">مطبق دجاج</span></div><div class="item-price-tag">10 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Vegetable Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Vegetable Mutbaq</span><span class="item-name-ar">مطبق خضار</span></div><div class="item-price-tag">6 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Mozzarella Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Mozzarella Mutbaq</span><span class="item-name-ar">مطبق جبن موزاريلا</span></div><div class="item-price-tag">8 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Burger Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Burger Mutbaq</span><span class="item-name-ar">مطبق برجر</span></div><div class="item-price-tag">7 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Banana Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Banana Mutbaq</span><span class="item-name-ar">مطبق موز</span></div><div class="item-price-tag">7 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Cream Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Cream Mutbaq</span><span class="item-name-ar">مطبق قشطة</span></div><div class="item-price-tag">7 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Cheddar Cheese Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Cheddar Cheese Mutbaq</span><span class="item-name-ar">مطبق جبن شيدر</span></div><div class="item-price-tag">7 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Liquid Cheese Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Liquid Cheese Mutbaq</span><span class="item-name-ar">مطبق جبن سائل</span></div><div class="item-price-tag">8 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Halloumi Cheese Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Halloumi Cheese Mutbaq</span><span class="item-name-ar">مطبق جبن حلومي</span></div><div class="item-price-tag">11 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Double Vegetable Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Double Vegetable Mutbaq</span><span class="item-name-ar">مطبق خضار دبل</span></div><div class="item-price-tag">11 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Double Cheese Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Double Cheese Mutbaq</span><span class="item-name-ar">مطبق جبن دبل</span></div><div class="item-price-tag">13 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80" alt="Double Meat Mutbaq" loading="lazy"><div class="item-info"><span class="item-name-en">Double Meat Mutbaq</span><span class="item-name-ar">مطبق لحم دبل</span></div><div class="item-price-tag">16 SAR</div></div></div></section><section id="sides" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=85&auto=format" alt="SIDE DISHES" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">أطباق جانبية</span><span class="cat-banner-en">SIDE DISHES</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Cheese Fries" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Fries</span><span class="item-name-ar">بطاطس جبن</span></div><div class="item-price-tag">9 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Chicken Cheese Fries" loading="lazy"><div class="item-info"><span class="item-name-en">Chicken Cheese Fries</span><span class="item-name-ar">بطاطس دجاج وجبن</span></div><div class="item-price-tag">15 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Cheddar &amp; Cheese" loading="lazy"><div class="item-info"><span class="item-name-en">Cheddar &amp; Cheese</span><span class="item-name-ar">شيدر اند جبن</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Regular Garlic" loading="lazy"><div class="item-info"><span class="item-name-en">Regular Garlic</span><span class="item-name-ar">ثوم عادي</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Spicy Garlic" loading="lazy"><div class="item-info"><span class="item-name-en">Spicy Garlic</span><span class="item-name-ar">ثوم حار</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Hummus" loading="lazy"><div class="item-info"><span class="item-name-en">Hummus</span><span class="item-name-ar">حمص</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Tahini" loading="lazy"><div class="item-info"><span class="item-name-en">Tahini</span><span class="item-name-ar">طحينة</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Mayonnaise" loading="lazy"><div class="item-info"><span class="item-name-en">Mayonnaise</span><span class="item-name-ar">مايونيز</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Cheese Sauce" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Sauce</span><span class="item-name-ar">جبن</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Plain Fries" loading="lazy"><div class="item-info"><span class="item-name-en">Plain Fries</span><span class="item-name-ar">بطاطس عادي</span></div><div class="item-price-tag">7 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Cheese Burger" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Burger</span><span class="item-name-ar">برجر جبن</span></div><div class="item-price-tag">11 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Regular Burger" loading="lazy"><div class="item-info"><span class="item-name-en">Regular Burger</span><span class="item-name-ar">برجر عادي</span></div><div class="item-price-tag">10 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Cheese Fattah" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Fattah</span><span class="item-name-ar">فتة جبن</span></div><div class="item-price-tag">8 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80" alt="Hot Fattah" loading="lazy"><div class="item-info"><span class="item-name-en">Hot Fattah</span><span class="item-name-ar">فتة حنيش</span></div><div class="item-price-tag">12 SAR</div></div></div></section><section id="masoub" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=85&auto=format" alt="MASOUB" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">معصوب</span><span class="cat-banner-en">MASOUB</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Honey Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Honey Masoub</span><span class="item-name-ar">معصوب عسل</span></div><div class="item-price-tag">8 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Cheese Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Masoub</span><span class="item-name-ar">معصوب جبن</span></div><div class="item-price-tag">13 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Honey Cream Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Honey Cream Masoub</span><span class="item-name-ar">معصوب قشطة عسل</span></div><div class="item-price-tag">12 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Honey Banana Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Honey Banana Masoub</span><span class="item-name-ar">معصوب موز عسل</span></div><div class="item-price-tag">15 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Royal Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Royal Masoub</span><span class="item-name-ar">معصوب ملكي</span></div><div class="item-price-tag">15 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Royal Mixed Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Royal Mixed Masoub</span><span class="item-name-ar">معصوب ملكي مشكلة</span></div><div class="item-price-tag">15 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Royal Cream Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Royal Cream Masoub</span><span class="item-name-ar">معصوب ملكي قشطة</span></div><div class="item-price-tag">18 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Mixed Cream Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Mixed Cream Masoub</span><span class="item-name-ar">معصوب قشطة مشكلة</span></div><div class="item-price-tag">18 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Plain Cream Masoub" loading="lazy"><div class="item-info"><span class="item-name-en">Plain Cream Masoub</span><span class="item-name-ar">معصوب قشطة عادي</span></div><div class="item-price-tag">6 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80" alt="Royal Fattah" loading="lazy"><div class="item-info"><span class="item-name-en">Royal Fattah</span><span class="item-name-ar">فتة ملكي</span></div><div class="item-price-tag">10 SAR</div></div></div></section><section id="shawarma" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=800&q=85&auto=format" alt="SHAWARMA" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">شاورما</span><span class="cat-banner-en">SHAWARMA</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80" alt="Chicken Shawarma" loading="lazy"><div class="item-info"><span class="item-name-en">Chicken Shawarma</span><span class="item-name-ar">شاورما دجاج</span></div><div class="item-prices"><span class="size-tag">Small: 7 SAR</span> <span class="size-tag">Large: 12 SAR</span></div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80" alt="Arabic Chicken Shawarma" loading="lazy"><div class="item-info"><span class="item-name-en">Arabic Chicken Shawarma</span><span class="item-name-ar">شاورما عربي دجاج</span></div><div class="item-prices"><span class="size-tag">Small: 15 SAR</span> <span class="size-tag">Large: 17 SAR</span></div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80" alt="Chicken Shawarma Plate" loading="lazy"><div class="item-info"><span class="item-name-en">Chicken Shawarma Plate</span><span class="item-name-ar">صحن شاورما دجاج</span></div><div class="item-prices"><span class="size-tag">Regular: 21 SAR</span></div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80" alt="Arabic Shawarma Plate" loading="lazy"><div class="item-info"><span class="item-name-en">Arabic Shawarma Plate</span><span class="item-name-ar">صحن شاورما عربي دجاج</span></div><div class="item-prices"><span class="size-tag">Large: 26 SAR</span></div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80" alt="Crispy Shawarma" loading="lazy"><div class="item-info"><span class="item-name-en">Crispy Shawarma</span><span class="item-name-ar">شاورما كرسبي</span></div><div class="item-prices"><span class="size-tag">Regular: 10 SAR</span></div></div></div></section><section id="extras" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=800&q=85&auto=format" alt="EXTRAS" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">إضافات</span><span class="cat-banner-en">EXTRAS</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Fasolia" loading="lazy"><div class="item-info"><span class="item-name-en">Fasolia</span><span class="item-name-ar">فاصوليا</span></div><div class="item-price-tag">8 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Falafel Sandwich" loading="lazy"><div class="item-info"><span class="item-name-en">Falafel Sandwich</span><span class="item-name-ar">ساندوتش فلافل</span></div><div class="item-price-tag">4 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Liver Sandwich" loading="lazy"><div class="item-info"><span class="item-name-en">Liver Sandwich</span><span class="item-name-ar">ساندوتش كبدة</span></div><div class="item-price-tag">5 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="3 Pieces Falafel" loading="lazy"><div class="item-info"><span class="item-name-en">3 Pieces Falafel</span><span class="item-name-ar">فلافل 3 حبات</span></div><div class="item-price-tag">1 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Cheese Sambusa" loading="lazy"><div class="item-info"><span class="item-name-en">Cheese Sambusa</span><span class="item-name-ar">سمبوسة جبن</span></div><div class="item-price-tag">1 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Meat Sambusa" loading="lazy"><div class="item-info"><span class="item-name-en">Meat Sambusa</span><span class="item-name-ar">سمبوسة لحم</span></div><div class="item-price-tag">1 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Chicken Sambusa" loading="lazy"><div class="item-info"><span class="item-name-en">Chicken Sambusa</span><span class="item-name-ar">سمبوسة دجاج</span></div><div class="item-price-tag">1 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80" alt="Vegetable Sambusa" loading="lazy"><div class="item-info"><span class="item-name-en">Vegetable Sambusa</span><span class="item-name-ar">سمبوسة خضار</span></div><div class="item-price-tag">1 SAR</div></div></div></section><section id="juices" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=800&q=85&auto=format" alt="FRESH JUICES" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">العصائر الطازجة</span><span class="cat-banner-en">FRESH JUICES</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80" alt="Fresh Orange Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Fresh Orange Juice</span><span class="item-name-ar">برتقال فريش</span></div><div class="item-price-tag">10 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80" alt="Fresh Cocktail Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Fresh Cocktail Juice</span><span class="item-name-ar">كوكتيل فريش</span></div><div class="item-price-tag">12 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80" alt="Fresh Mango Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Fresh Mango Juice</span><span class="item-name-ar">مانجو فريش</span></div><div class="item-price-tag">12 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80" alt="Banana Milk Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Banana Milk Juice</span><span class="item-name-ar">موز حليب</span></div><div class="item-price-tag">12 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80" alt="Fresh Pomegranate Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Fresh Pomegranate Juice</span><span class="item-name-ar">رمان</span></div><div class="item-price-tag">12 SAR</div></div></div></section><section id="softdrinks" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&q=85&auto=format" alt="SOFT DRINKS" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">المشروبات الغازية</span><span class="cat-banner-en">SOFT DRINKS</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80" alt="Pepsi" loading="lazy"><div class="item-info"><span class="item-name-en">Pepsi</span><span class="item-name-ar">بيبسي</span></div><div class="item-price-tag">3 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80" alt="Diet Pepsi" loading="lazy"><div class="item-info"><span class="item-name-en">Diet Pepsi</span><span class="item-name-ar">بيبسي دايت</span></div><div class="item-price-tag">3 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80" alt="7UP" loading="lazy"><div class="item-info"><span class="item-name-en">7UP</span><span class="item-name-ar">سفن أب</span></div><div class="item-price-tag">3 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80" alt="Mirinda" loading="lazy"><div class="item-info"><span class="item-name-en">Mirinda</span><span class="item-name-ar">ميرندا</span></div><div class="item-price-tag">3 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80" alt="Spring Juice" loading="lazy"><div class="item-info"><span class="item-name-en">Spring Juice</span><span class="item-name-ar">عصير ربيع</span></div><div class="item-price-tag">2.5 SAR</div></div></div></section><section id="hotdrinks" class="cat-section">
+<div class="cat-banner"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=85&auto=format" alt="HOT DRINKS" loading="lazy">
+<div class="cat-banner-overlay"></div><div class="cat-banner-text"><span class="cat-banner-ar">المشروبات الساخنة</span><span class="cat-banner-en">HOT DRINKS</span></div></div>
+<div class="cat-items"><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80" alt="Tea" loading="lazy"><div class="item-info"><span class="item-name-en">Tea</span><span class="item-name-ar">شاي</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80" alt="Adani Tea" loading="lazy"><div class="item-info"><span class="item-name-en">Adani Tea</span><span class="item-name-ar">شاي عدني</span></div><div class="item-price-tag">2 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80" alt="Nescafe" loading="lazy"><div class="item-info"><span class="item-name-en">Nescafe</span><span class="item-name-ar">نسكافيه</span></div><div class="item-price-tag">3 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80" alt="Black Tea" loading="lazy"><div class="item-info"><span class="item-name-en">Black Tea</span><span class="item-name-ar">شاي سادة</span></div><div class="item-price-tag">1 SAR</div></div><div class="menu-item"><img class="item-thumb" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80" alt="Karak Tea" loading="lazy"><div class="item-info"><span class="item-name-en">Karak Tea</span><span class="item-name-ar">كرك</span></div><div class="item-price-tag">3 SAR</div></div></div></section>
 
-<!-- ══ FOOTER ══ -->
 <div class="footer">
-  <div class="f-logo">دي جي بازا</div>
-  <div class="f-logo-en">DJ BAZZA</div>
-  <div class="f-divider"></div>
-  <div class="f-actions">
-    <a href="https://wa.me/966534772776" target="_blank" class="btn-wa">
-      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-      واتساب
-    </a>
-    <a href="tel:0534772776" class="btn-call" style="background:#fff;color:#1B5E20;">
-      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      اتصال
-    </a>
-    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank" class="btn-map">
-      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      الموقع
-    </a>
+  <div class="fl">دي جي بازا</div>
+  <div class="fle">DJ BAZZA</div>
+  <div class="fd"></div>
+  <div class="fa">
+    <a href="https://wa.me/966534772776" target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> واتساب</a>
+    <a href="tel:0534772776" class="btn-call" style="background:#fff;color:#1B5E20;"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> اتصال</a>
+    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank" class="btn-map"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> الموقع</a>
   </div>
-  <div class="footer-qr">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rdstudiohub.github.io/DJ-BAZZA-Menu/&margin=10" alt="QR Code">
-  </div>
-  <div class="f-location">
-    <a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">📍 جدة، المملكة العربية السعودية</a>
-  </div>
+  <div class="footer-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://rdstudiohub.github.io/DJ-BAZZA-Menu/&margin=10" alt="QR"></div>
+  <div class="floc"><a href="https://maps.app.goo.gl/BPdRUu7r3iRbvCDc9" target="_blank">📍 جدة، المملكة العربية السعودية</a></div>
 </div>
 
 </div>
 
 <script>
-// ─── TAB NAVIGATION ───
-document.querySelectorAll('.cat-tab').forEach(tab => {
-  tab.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-    const target = document.querySelector(this.dataset.target);
-    if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
-  });
+// ─── TAB CLICK ───
+(function(){
+var tabs=document.querySelectorAll('.cat-tab');
+var sections=document.querySelectorAll('.cat-section');
+var nav=document.querySelector('.cat-nav');
+var scrolling=false;
+
+tabs.forEach(function(tab){
+tab.addEventListener('click',function(e){
+var id=this.getAttribute('data-target');
+if(!id)return;
+scrolling=true;
+tabs.forEach(function(t){t.classList.remove('active')});
+this.classList.add('active');
+var target=document.getElementById(id);
+if(target){
+var navH=nav.offsetHeight;
+var top=target.getBoundingClientRect().top+window.pageYOffset-navH-10;
+window.scrollTo({top:top,behavior:'smooth'});
+setTimeout(function(){scrolling=false;},600);
+}
+});
 });
 
 // ─── SCROLL SPY ───
-const sections_els = document.querySelectorAll('.cat-section');
-const tabs_els = document.querySelectorAll('.cat-tab');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      tabs_els.forEach(t => t.classList.remove('active'));
-      const activeTab = document.querySelector(`.cat-tab[data-target="#${entry.target.id}"]`);
-      if (activeTab) {
-        activeTab.classList.add('active');
-        activeTab.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-      }
-    }
-  });
-}, {rootMargin:'-70px 0px -50% 0px',threshold:0});
-sections_els.forEach(s => observer.observe(s));
+var observer=new IntersectionObserver(function(entries){
+if(scrolling)return;
+entries.forEach(function(entry){
+if(entry.isIntersecting){
+tabs.forEach(function(t){t.classList.remove('active')});
+var activeTab=document.querySelector('.cat-tab[data-target="'+entry.target.id+'"]');
+if(activeTab){activeTab.classList.add('active');
+activeTab.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+}
+});
+},{rootMargin:'-62px 0px -50% 0px',threshold:0});
+sections.forEach(function(s){observer.observe(s)});
+})();
 
 // ─── SEARCH ───
-function filterMenu(query) {
-  const q = query.toLowerCase().trim();
-  const items = document.querySelectorAll('.menu-item');
-  let anyVisible = false;
-  items.forEach(item => {
-    const text = item.textContent.toLowerCase();
-    const match = !q || text.includes(q);
-    item.style.display = match ? '' : 'none';
-    if (match) anyVisible = true;
-  });
-  sections_els.forEach(section => {
-    const visibleItems = section.querySelectorAll('.menu-item[style*="display: none"]');
-    const totalItems = section.querySelectorAll('.menu-item').length;
-    const hidden = visibleItems.length;
-    const hasVisible = hidden < totalItems;
-    section.style.display = (!q || hasVisible) ? '' : 'none';
-  });
-  document.getElementById('noResults').style.display = anyVisible || !q ? 'none' : 'block';
+function filterMenu(query){
+var q=query.toLowerCase().trim();
+var items=document.querySelectorAll('.menu-item');
+var sections_els=document.querySelectorAll('.cat-section');
+var anyVisible=false;
+items.forEach(function(item){
+var text=item.textContent.toLowerCase();
+var match=!q||text.includes(q);
+item.style.display=match?'':'none';
+if(match)anyVisible=true;
+});
+sections_els.forEach(function(section){
+var vis=section.querySelectorAll('.menu-item:not([style*="display: none"])').length;
+section.style.display=(!q||vis>0)?'':'none';
+});
+document.getElementById('noResults').style.display=anyVisible||!q?'none':'block';
 }
 </script>
-
 </body>
 </html>
