@@ -14,7 +14,7 @@ R = {
 
 # Category-specific thumbnail images (reused for all items in that category)
 CAT_IMAGES = {
-    "mutbaq": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=150&h=150&fit=crop&q=80",
+    "mutbaq": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=150&h=150&fit=crop&q=80",
     "sides": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150&h=150&fit=crop&q=80",
     "masoub": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=150&h=150&fit=crop&q=80",
     "shawarma": "https://images.unsplash.com/photo-1561651823-34feb02250e4?w=150&h=150&fit=crop&q=80",
@@ -27,7 +27,7 @@ CAT_IMAGES = {
 CATEGORIES = [
     {
         "id": "mutbaq", "title_ar": "المطبق", "title_en": "ALMUTBIQ",
-        "banner": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=85&auto=format",
         "type": "single",
         "items": [
             ("Meat Mutbaq", "مطبق لحم", 9), ("Chicken Mutbaq", "مطبق دجاج", 10),
