@@ -14,20 +14,20 @@ R = {
 
 # Category-specific thumbnail images (reused for all items in that category)
 CAT_IMAGES = {
-    "mutbaq": "https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=120&h=120&fit=crop&q=80",
-    "sides": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=120&h=120&fit=crop&q=80",
-    "masoub": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=120&h=120&fit=crop&q=80",
-    "shawarma": "https://images.unsplash.com/photo-1561651823-34feb02250e4?w=120&h=120&fit=crop&q=80",
-    "extras": "https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=120&h=120&fit=crop&q=80",
-    "juices": "https://images.unsplash.com/photo-1546173159-308b170e996f?w=120&h=120&fit=crop&q=80",
-    "softdrinks": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=120&h=120&fit=crop&q=80",
-    "hotdrinks": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=120&h=120&fit=crop&q=80",
+    "mutbaq": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=150&h=150&fit=crop&q=80",
+    "sides": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=150&h=150&fit=crop&q=80",
+    "masoub": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=150&h=150&fit=crop&q=80",
+    "shawarma": "https://images.unsplash.com/photo-1561651823-34feb02250e4?w=150&h=150&fit=crop&q=80",
+    "extras": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=150&h=150&fit=crop&q=80",
+    "juices": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=150&h=150&fit=crop&q=80",
+    "softdrinks": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=150&h=150&fit=crop&q=80",
+    "hotdrinks": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=150&h=150&fit=crop&q=80",
 }
 
 CATEGORIES = [
     {
         "id": "mutbaq", "title_ar": "المطبق", "title_en": "ALMUTBIQ",
-        "banner": "https://images.unsplash.com/photo-1606755456209-6b7a1a3e9c0a?w=800&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=85&auto=format",
         "type": "single",
         "items": [
             ("Meat Mutbaq", "مطبق لحم", 9), ("Chicken Mutbaq", "مطبق دجاج", 10),
@@ -79,7 +79,7 @@ CATEGORIES = [
     },
     {
         "id": "extras", "title_ar": "إضافات", "title_en": "EXTRAS",
-        "banner": "https://images.unsplash.com/photo-1604467707321-3d5c110a4f4a?w=800&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=800&q=85&auto=format",
         "type": "single",
         "items": [
             ("Fasolia", "فاصوليا", 8), ("Falafel Sandwich", "ساندوتش فلافل", 4),
@@ -90,7 +90,7 @@ CATEGORIES = [
     },
     {
         "id": "juices", "title_ar": "العصائر الطازجة", "title_en": "FRESH JUICES",
-        "banner": "https://images.unsplash.com/photo-1546173159-308b170e996f?w=800&q=85&auto=format",
+        "banner": "https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=800&q=85&auto=format",
         "type": "single",
         "items": [
             ("Fresh Orange Juice", "برتقال فريش", 10), ("Fresh Cocktail Juice", "كوكتيل فريش", 12),
@@ -171,7 +171,7 @@ img{{max-width:100%;height:auto;display:block}}
 .cat-items{{padding:6px 10px 8px}}
 .menu-item{{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #E8F5E9}}
 .menu-item:last-child{{border-bottom:none}}
-.item-thumb{{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;border:2px solid #E8F5E9}}
+.item-thumb{{width:70px;height:70px;border-radius:12px;object-fit:cover;flex-shrink:0;border:2px solid #E8F5E9}}
 .item-info{{flex:1;min-width:0}}
 .item-name-en{{font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#333;display:block;direction:ltr;text-align:left}}
 .item-name-ar{{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:500;color:#555;display:block;margin-top:1px}}
